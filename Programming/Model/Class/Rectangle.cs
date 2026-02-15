@@ -8,8 +8,28 @@ namespace Programming.Model.Class
 {
     internal class Rectangle
     {
-        private double Length;
-        private double Width;
-        private string Color;
+        private double length;
+        private double Length
+        {
+            get { return length; }
+            set
+            { 
+                if (length < 0)
+                    throw new ArgumentException();
+            }
+        }
+
+        private double width;
+        private double Width
+        {
+            get { return width; }
+            set
+            {
+                if (width < 0)
+                    throw new ArgumentException();
+            }
+        }
+
+        private string color { get; set; }
     }
 }

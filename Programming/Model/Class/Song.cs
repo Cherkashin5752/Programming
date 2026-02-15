@@ -8,8 +8,8 @@ namespace Programming.Model.Class
 {
     internal class Song
     {
-        private string Name;
-        private string Author;
-        private string Duration;
+        private string name { get; set; }
+        private string author { get; set; }
+        private string duration { get; set; }
     }
 }

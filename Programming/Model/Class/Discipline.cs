@@ -8,8 +8,19 @@ namespace Programming.Model.Class
 {
     internal class Discipline
     {
-        private string Name;
-        private string TeacherName;
-        private string HoursPersemester;
+        private string name { get; set; }
+        private string teacherName { get; set; }
+        
+        private int hoursPerSemester;
+    
+        private int HoursPerSemester
+        {
+            get { return hoursPerSemester; }
+            set
+            {
+                if (hoursPerSemester < 0)
+                    throw new ArgumentException();
+            }
+        }
     }
 }

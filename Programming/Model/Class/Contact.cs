@@ -8,8 +8,8 @@ namespace Programming.Model.Class
 {
     internal class Contact
     {
-        private string Number;
-        private string FirstName;
-        private string LastName;
+        private string number { get; set; }
+        private string firstName { get; set; }
+        private string lastName { get; set; }
     }
 }
