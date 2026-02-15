@@ -44,5 +44,17 @@ namespace Programming.Model.Class
                 seconds = value;
             }
         }
+
+        public Time(int _hours, int _minutes, int _seconds)
+        {
+            Hours = _hours;
+            Minutes = _minutes;
+            Seconds = _seconds;
+        }
+
+        public Time()
+        {
+
+        }
     }
 }

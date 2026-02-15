@@ -8,11 +8,11 @@ namespace Programming.Model.Class
 {
     internal class Rectangle
     {
+        private string Color { get; set; }
         private double length;
         private double width;
-        private string color { get; set; }
 
-        private double Length
+        public double Length
         {
             get { return length; }
             set
@@ -23,7 +23,7 @@ namespace Programming.Model.Class
             }
         }
 
-        private double Width
+        public double Width
         {
             get { return width; }
             set
@@ -32,6 +32,18 @@ namespace Programming.Model.Class
                     throw new ArgumentException();
                 width = value;
             }
+        }
+
+        public Rectangle(double _length, double _width, string _color)
+        {
+            Length = _length;
+            Width = _width;
+            Color = _color;
+        }
+
+        public Rectangle()
+        {
+
         }
     }
 }
