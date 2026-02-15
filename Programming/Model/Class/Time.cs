@@ -9,35 +9,39 @@ namespace Programming.Model.Class
     internal class Time
     {
         private int hours;
-        private int Hours
+        private int minutes;
+        private int seconds;
+        
+        public int Hours
         {
             get { return hours; }
             set
             {
                 if (hours > 23 || hours < 0)
                     throw new ArgumentException();
+                hours = value;
             }
         }
 
-        private int minutes;
-        private int Minutes
+        public int Minutes
         {
             get { return minutes; }
             set
             {
-                if (minutes > 59 || hours < 0)
+                if (minutes > 59 || minutes < 0)
                     throw new ArgumentException();
+                minutes = value;
             }
         }
 
-        private int seconds;
-        private int Seconds
+        public int Seconds
         {
             get { return seconds; }
             set
             {
-                if (seconds > 59 || hours < 0)
+                if (seconds > 59 || seconds < 0)
                     throw new ArgumentException();
+                seconds = value;
             }
         }
     }

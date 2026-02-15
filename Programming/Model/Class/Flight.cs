@@ -12,13 +12,14 @@ namespace Programming.Model.Class
         private string destination { get; set; }
         
         private int time;
-        private double Time
+        private int Time
         {
             get { return time; }
             set
             {
                 if (time < 0)
                     throw new ArgumentException();
+                time = value;
             }
         }
     }

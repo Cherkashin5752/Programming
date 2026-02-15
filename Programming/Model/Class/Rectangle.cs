@@ -9,6 +9,9 @@ namespace Programming.Model.Class
     internal class Rectangle
     {
         private double length;
+        private double width;
+        private string color { get; set; }
+
         private double Length
         {
             get { return length; }
@@ -16,10 +19,10 @@ namespace Programming.Model.Class
             { 
                 if (length < 0)
                     throw new ArgumentException();
+                length = value;
             }
         }
 
-        private double width;
         private double Width
         {
             get { return width; }
@@ -27,9 +30,8 @@ namespace Programming.Model.Class
             {
                 if (width < 0)
                     throw new ArgumentException();
+                width = value;
             }
         }
-
-        private string color { get; set; }
     }
 }

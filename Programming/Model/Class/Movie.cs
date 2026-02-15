@@ -9,31 +9,33 @@ namespace Programming.Model.Class
     internal class Movie
     {
         private string name { get; set; }
+        private string genre { get; set; }
         private int duration;
-        private double Durating
+        private double rating;
+        private int year;
+
+        private int Durating
         {
             get { return duration; }
             set
             {
                 if (duration < 0)
                     throw new ArgumentException();
+                duration = value;
             }
         }
 
-        private int year;
-        private double Year        
+        private int Year        
         {
             get { return year; }
             set
             {
                 if (year < 1900)
                     throw new ArgumentException();
+                year = value;
             }
         }
 
-        private string genre { get; set; }
-
-        private double rating;
         private double Rating
         {
             get { return rating; }
@@ -41,6 +43,7 @@ namespace Programming.Model.Class
             {
                 if (rating > 10 || rating < 0)
                     throw new ArgumentException();
+                rating = value;
             }
         }
     }

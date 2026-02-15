@@ -20,6 +20,7 @@ namespace Programming.Model.Class
             {
                 if (hoursPerSemester < 0)
                     throw new ArgumentException();
+                hoursPerSemester = value;
             }
         }
     }
