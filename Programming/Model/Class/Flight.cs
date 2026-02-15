@@ -8,18 +8,31 @@ namespace Programming.Model.Class
 {
     internal class Flight
     {
-        private string Departure { get; set; }
-        private string Destination { get; set; }
+        private string _departure;
+        private string _destination;
         
-        private int time;
+        private int _time;
+
+        public string Departure
+        {
+            get { return _departure; }
+            set { _departure = value; }
+        }
+
+        public string Destination
+        {
+            get { return _destination; }
+            set { _destination = value; }
+        }
+
         public int Time
         {
-            get { return time; }
+            get { return _time; }
             set
             {
-                if (time < 0)
+                if (_time < 0)
                     throw new ArgumentException();
-                time = value;
+                _time = value;
             }
         }
 

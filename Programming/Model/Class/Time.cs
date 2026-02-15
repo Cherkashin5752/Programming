@@ -8,48 +8,48 @@ namespace Programming.Model.Class
 {
     internal class Time
     {
-        private int hours;
-        private int minutes;
-        private int seconds;
+        private int _hours;
+        private int _minutes;
+        private int _seconds;
         
         public int Hours
         {
-            get { return hours; }
+            get { return _hours; }
             set
             {
-                if (hours > 23 || hours < 0)
+                if (_hours > 23 || _hours < 0)
                     throw new ArgumentException();
-                hours = value;
+                _hours = value;
             }
         }
 
         public int Minutes
         {
-            get { return minutes; }
+            get { return _minutes; }
             set
             {
-                if (minutes > 59 || minutes < 0)
+                if (_minutes > 59 || _minutes < 0)
                     throw new ArgumentException();
-                minutes = value;
+                _minutes = value;
             }
         }
 
         public int Seconds
         {
-            get { return seconds; }
+            get { return _seconds; }
             set
             {
-                if (seconds > 59 || seconds < 0)
+                if (_seconds > 59 || _seconds < 0)
                     throw new ArgumentException();
-                seconds = value;
+                _seconds = value;
             }
         }
 
-        public Time(int _hours, int _minutes, int _seconds)
+        public Time(int hours, int minutes, int seconds)
         {
-            Hours = _hours;
-            Minutes = _minutes;
-            Seconds = _seconds;
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
         }
 
         public Time()

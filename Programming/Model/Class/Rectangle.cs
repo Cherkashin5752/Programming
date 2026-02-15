@@ -8,37 +8,43 @@ namespace Programming.Model.Class
 {
     internal class Rectangle
     {
-        private string Color { get; set; }
-        private double length;
-        private double width;
+        private string _color;
+        private double _length;
+        private double _width;
+
+        public string Color
+        {
+            get { return _color; }
+            set { _color = value; }
+        }
 
         public double Length
         {
-            get { return length; }
+            get { return _length; }
             set
             { 
-                if (length < 0)
+                if (_length < 0)
                     throw new ArgumentException();
-                length = value;
+                _length = value;
             }
         }
 
         public double Width
         {
-            get { return width; }
+            get { return _width; }
             set
             {
-                if (width < 0)
+                if (_width < 0)
                     throw new ArgumentException();
-                width = value;
+                _width = value;
             }
         }
 
-        public Rectangle(double _length, double _width, string _color)
+        public Rectangle(double length, double width, string color)
         {
-            Length = _length;
-            Width = _width;
-            Color = _color;
+            Length = length;
+            Width = width;
+            Color = color;
         }
 
         public Rectangle()

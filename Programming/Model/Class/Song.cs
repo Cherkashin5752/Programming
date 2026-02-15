@@ -9,15 +9,33 @@ namespace Programming.Model.Class
 {
     internal class Song
     {
-        private string Name { get; set; }
-        private string Author { get; set; }
-        private string Duration { get; set; }
+        private string _name;
+        private string _author;
+        private string _duration;
 
-        public Song(string _name, string _author, string _duration)
+        public string Name
         {
-            Name = _name;
-            Author = _author;
-            Duration = _duration;
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public string Author
+        {
+            get { return _author; }
+            set { _author = value; }
+        }
+
+        public string Duration
+        {
+            get { return _duration; }
+            set { _duration = value; }
+        }
+
+        public Song(string name, string author, string duration)
+        {
+            Name = name;
+            Author = author;
+            Duration = duration;
         }
 
         public Song()

@@ -8,52 +8,68 @@ namespace Programming.Model.Class
 {
     internal class Movie
     {
-        private string Name { get; set; }
-        private string Genre { get; set; }
-        private int duration;
-        private double rating;
-        private int year;
+        private string _name;
+        private string _genre;
+        private int _duration;
+        private double _rating;
+        private int _year;
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public string Genre
+        {
+            get { return _genre; }
+            set { _genre = value; }
+        }
 
         public int Duration
         {
-            get { return duration; }
+            get { return _duration; }
             set
             {
-                if (duration < 0)
+                if (_duration < 0)
                     throw new ArgumentException();
-                duration = value;
+                _duration = value;
             }
         }
 
         public int Year        
         {
-            get { return year; }
+            get { return _year; }
             set
             {
-                if (year < 1900)
+                if (_year < 0)
                     throw new ArgumentException();
-                year = value;
+                _year = value;
             }
         }
 
         public double Rating
         {
-            get { return rating; }
+            get { return _rating; }
             set
             {
-                if (rating > 10 || rating < 0)
+                if (_rating > 10 || _rating < 0)
+                {
                     throw new ArgumentException();
-                rating = value;
+                    return;
+                }
+                
+                _rating = value;
             }
         }
 
-        public Movie(string _name, string _genre, int _duration, int _year, double _rating)
+        public Movie(string name, string genre, int duration, int year, double rating)
         {
-            Name = _name;
-            Genre = _genre;
-            Duration = _duration;
-            Year = _year;
-            Rating = _rating;
+            Name = name;
+            Genre = genre;
+            Duration = duration;
+            Year = year;
+            Rating = rating;
         }
 
         public Movie()

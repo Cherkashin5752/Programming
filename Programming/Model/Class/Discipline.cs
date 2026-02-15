@@ -8,26 +8,38 @@ namespace Programming.Model.Class
 {
     internal class Discipline
     {
-        private string Name { get; set; }
-        private string TeacherName { get; set; }
-        private int hoursPerSemester;
+        private string _name;
+        private string _teacherName;
+        private int _hoursPerSemester;
     
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public string TeacherName
+        {
+            get { return _teacherName; }
+            set { _teacherName = value; }
+        }
+
         public int HoursPerSemester
         {
-            get { return hoursPerSemester; }
+            get { return _hoursPerSemester; }
             set
             {
-                if (hoursPerSemester < 0)
+                if (_hoursPerSemester < 0)
                     throw new ArgumentException();
-                hoursPerSemester = value;
+                _hoursPerSemester = value;
             }
         }
 
-        public Discipline(string _name, string _teacherName, int _hoursPerSemester)
+        public Discipline(string name, string teacherName, int hoursPerSemester)
         {
-            Name = _name;
-            TeacherName = _teacherName;
-            HoursPerSemester = _hoursPerSemester;
+            Name = name;
+            TeacherName = teacherName;
+            HoursPerSemester = hoursPerSemester;
         }
 
         public Discipline()
