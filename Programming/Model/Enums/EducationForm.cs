@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Enums
 {
-    public enum Smartphone
+    public enum EducationForm
     {
-        Apple,
-        Microsoft,
-        Google,
-        Xiaomi,
-        Sumsung
+        FullTime,
+        Distant,
+        Evening,
+        Сorrespondence
     }
 }

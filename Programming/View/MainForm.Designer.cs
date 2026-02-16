@@ -44,7 +44,7 @@
             ChooseEnumLabel = new Label();
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
-            tabPage2 = new TabPage();
+            Classes = new TabPage();
             groupBox5 = new GroupBox();
             YearLabel = new Label();
             YearTextBox = new TextBox();
@@ -78,7 +78,7 @@
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
-            tabPage2.SuspendLayout();
+            Classes.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
             SuspendLayout();
@@ -86,7 +86,7 @@
             // tabControl1
             // 
             tabControl1.Controls.Add(Enums);
-            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(Classes);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -247,16 +247,16 @@
             EnumsListBox.TabIndex = 0;
             EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
-            // tabPage2
+            // Classes
             // 
-            tabPage2.Controls.Add(groupBox5);
-            tabPage2.Controls.Add(groupBox4);
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Size = new Size(792, 422);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            Classes.Controls.Add(groupBox5);
+            Classes.Controls.Add(groupBox4);
+            Classes.Location = new Point(4, 24);
+            Classes.Name = "Classes";
+            Classes.Size = new Size(792, 422);
+            Classes.TabIndex = 1;
+            Classes.Text = "Classes";
+            Classes.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -546,7 +546,7 @@
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            tabPage2.ResumeLayout(false);
+            Classes.ResumeLayout(false);
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);
@@ -572,7 +572,7 @@
         private Button WeekdayParseButton;
         private TextBox WeekdayTextBox;
         private ComboBox SeasonComboBox;
-        private TabPage tabPage2;
+        private TabPage Classes;
         private GroupBox groupBox4;
         private Button FindRectangleButton;
         private Label ColorLabel;

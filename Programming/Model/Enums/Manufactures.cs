@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Enums
 {
-    public enum Education
+    public enum Manufactures
     {
-        FullTime,
-        Distant,
-        Evening,
-        Сorrespondence
+        Apple,
+        Microsoft,
+        Google,
+        Xiaomi,
+        Sumsung
     }
 }

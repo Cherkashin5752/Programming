@@ -217,7 +217,7 @@ namespace Programming
             if (!int.TryParse(WeekdayTextBox.Text, out var a) &&
                 Enum.TryParse<Weekday>(WeekdayTextBox.Text, true, out Weekday weekday))
             {
-                IsitWeekday.Text = $"Есть такой день недели({weekday} = {(int)weekday + 1})";
+                IsitWeekday.Text = $"Есть такой день недели ({weekday} = {(int)weekday + 1})";
                 return;
             }
 
