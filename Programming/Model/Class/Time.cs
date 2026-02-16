@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Programming.Model.Class
@@ -17,9 +18,8 @@ namespace Programming.Model.Class
             get { return _hours; }
             set
             {
-                if (_hours > 23 || _hours < 0)
-                    throw new ArgumentException();
-                _hours = value;
+                if (Validator.AssertValueInRange(value, 0, 23))
+                    _hours = value;
             }
         }
 
@@ -28,9 +28,8 @@ namespace Programming.Model.Class
             get { return _minutes; }
             set
             {
-                if (_minutes > 59 || _minutes < 0)
-                    throw new ArgumentException();
-                _minutes = value;
+                if (Validator.AssertValueInRange(value, 0, 59))
+                    _minutes = value;
             }
         }
 
@@ -39,9 +38,8 @@ namespace Programming.Model.Class
             get { return _seconds; }
             set
             {
-                if (_seconds > 59 || _seconds < 0)
-                    throw new ArgumentException();
-                _seconds = value;
+                if (Validator.AssertValueInRange(value, 0, 59))
+                    _seconds = value;
             }
         }
 

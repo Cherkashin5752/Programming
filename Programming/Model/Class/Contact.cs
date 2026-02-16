@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Programming.Model.Class
 {
     internal class Contact
     {
         private string _number;
-        private string _firstName;
-        private string _lastName;
+        private string _name;
+        private string _sureName;
 
         public string Number
         {
@@ -18,28 +19,44 @@ namespace Programming.Model.Class
             set { _number = value; }
         }
 
-        public string FirstName
+        public string Name
         {
-            get { return _firstName; }
-            set { _firstName = value; }
+            get { return _name; }
+            set
+            {
+                if (AssertStringContainsOnlyLetters(value))
+                    _name = value;
+            }
         }
 
-        public string LastName
+        public string SureName
         {
-            get { return _lastName; }
-            set { _lastName = value; }
+            get { return _sureName; }
+            set
+            {
+                if (AssertStringContainsOnlyLetters(value))
+                    _sureName = value;
+            }
         }
 
-        public Contact(string number, string firstName, string lastName)
+        public Contact(string number, string name, string sureName)
         {
             Number = number;
-            FirstName = firstName;
-            LastName = lastName;
+            Name = name;
+            SureName = sureName;
         }
 
         public Contact()
         {
 
+        }
+
+        private bool AssertStringContainsOnlyLetters(string value)
+        {
+            if (Regex.IsMatch(value, "^[a-zA-Z]*$"))
+                return true;
+            else
+                throw new ArgumentException(nameof(value), " содержит не только латинские буквы");
         }
     }
 }

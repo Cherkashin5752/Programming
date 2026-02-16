@@ -59,6 +59,12 @@
             NameTextBox = new TextBox();
             MoviesListBox = new ListBox();
             groupBox4 = new GroupBox();
+            IdLabel = new Label();
+            IdTextBox = new TextBox();
+            CenterYLabel = new Label();
+            CenterXLabel = new Label();
+            CenterYTextBox = new TextBox();
+            CenterXTextBox = new TextBox();
             FindRectangleButton = new Button();
             ColorLabel = new Label();
             ColorTextBox = new TextBox();
@@ -268,7 +274,7 @@
             groupBox5.Controls.Add(MoviesListBox);
             groupBox5.Location = new Point(317, 3);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(287, 351);
+            groupBox5.Size = new Size(287, 411);
             groupBox5.TabIndex = 8;
             groupBox5.TabStop = false;
             groupBox5.Text = "Movie";
@@ -309,7 +315,7 @@
             // 
             // FindMovieButton
             // 
-            FindMovieButton.Location = new Point(146, 303);
+            FindMovieButton.Location = new Point(146, 363);
             FindMovieButton.Name = "FindMovieButton";
             FindMovieButton.Size = new Size(75, 23);
             FindMovieButton.TabIndex = 7;
@@ -374,12 +380,18 @@
             MoviesListBox.ItemHeight = 15;
             MoviesListBox.Location = new Point(6, 22);
             MoviesListBox.Name = "MoviesListBox";
-            MoviesListBox.Size = new Size(120, 304);
+            MoviesListBox.Size = new Size(120, 364);
             MoviesListBox.TabIndex = 0;
             MoviesListBox.SelectedIndexChanged += MoviesListBox_SelectedIndexChanged;
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(IdLabel);
+            groupBox4.Controls.Add(IdTextBox);
+            groupBox4.Controls.Add(CenterYLabel);
+            groupBox4.Controls.Add(CenterXLabel);
+            groupBox4.Controls.Add(CenterYTextBox);
+            groupBox4.Controls.Add(CenterXTextBox);
             groupBox4.Controls.Add(FindRectangleButton);
             groupBox4.Controls.Add(ColorLabel);
             groupBox4.Controls.Add(ColorTextBox);
@@ -390,14 +402,65 @@
             groupBox4.Controls.Add(RectanglesListBox);
             groupBox4.Location = new Point(8, 3);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(287, 351);
+            groupBox4.Size = new Size(287, 411);
             groupBox4.TabIndex = 0;
             groupBox4.TabStop = false;
             groupBox4.Text = "Rectangle";
             // 
+            // IdLabel
+            // 
+            IdLabel.AutoSize = true;
+            IdLabel.Location = new Point(146, 282);
+            IdLabel.Name = "IdLabel";
+            IdLabel.Size = new Size(20, 15);
+            IdLabel.TabIndex = 13;
+            IdLabel.Text = "Id:";
+            // 
+            // IdTextBox
+            // 
+            IdTextBox.Location = new Point(146, 304);
+            IdTextBox.Name = "IdTextBox";
+            IdTextBox.ReadOnly = true;
+            IdTextBox.Size = new Size(100, 23);
+            IdTextBox.TabIndex = 12;
+            // 
+            // CenterYLabel
+            // 
+            CenterYLabel.AutoSize = true;
+            CenterYLabel.Location = new Point(146, 178);
+            CenterYLabel.Name = "CenterYLabel";
+            CenterYLabel.Size = new Size(55, 15);
+            CenterYLabel.TabIndex = 11;
+            CenterYLabel.Text = "Center Y:";
+            // 
+            // CenterXLabel
+            // 
+            CenterXLabel.AutoSize = true;
+            CenterXLabel.Location = new Point(146, 230);
+            CenterXLabel.Name = "CenterXLabel";
+            CenterXLabel.Size = new Size(55, 15);
+            CenterXLabel.TabIndex = 9;
+            CenterXLabel.Text = "Center X:";
+            // 
+            // CenterYTextBox
+            // 
+            CenterYTextBox.Location = new Point(146, 196);
+            CenterYTextBox.Name = "CenterYTextBox";
+            CenterYTextBox.ReadOnly = true;
+            CenterYTextBox.Size = new Size(100, 23);
+            CenterYTextBox.TabIndex = 10;
+            // 
+            // CenterXTextBox
+            // 
+            CenterXTextBox.Location = new Point(146, 248);
+            CenterXTextBox.Name = "CenterXTextBox";
+            CenterXTextBox.ReadOnly = true;
+            CenterXTextBox.Size = new Size(100, 23);
+            CenterXTextBox.TabIndex = 8;
+            // 
             // FindRectangleButton
             // 
-            FindRectangleButton.Location = new Point(146, 303);
+            FindRectangleButton.Location = new Point(146, 363);
             FindRectangleButton.Name = "FindRectangleButton";
             FindRectangleButton.Size = new Size(75, 23);
             FindRectangleButton.TabIndex = 7;
@@ -408,7 +471,7 @@
             // ColorLabel
             // 
             ColorLabel.AutoSize = true;
-            ColorLabel.Location = new Point(146, 134);
+            ColorLabel.Location = new Point(146, 126);
             ColorLabel.Name = "ColorLabel";
             ColorLabel.Size = new Size(39, 15);
             ColorLabel.TabIndex = 6;
@@ -416,7 +479,7 @@
             // 
             // ColorTextBox
             // 
-            ColorTextBox.Location = new Point(146, 152);
+            ColorTextBox.Location = new Point(146, 144);
             ColorTextBox.Name = "ColorTextBox";
             ColorTextBox.Size = new Size(100, 23);
             ColorTextBox.TabIndex = 5;
@@ -425,7 +488,7 @@
             // WidthLabel
             // 
             WidthLabel.AutoSize = true;
-            WidthLabel.Location = new Point(146, 78);
+            WidthLabel.Location = new Point(146, 74);
             WidthLabel.Name = "WidthLabel";
             WidthLabel.Size = new Size(42, 15);
             WidthLabel.TabIndex = 4;
@@ -433,11 +496,11 @@
             // 
             // WidthTextBox
             // 
-            WidthTextBox.Location = new Point(146, 96);
+            WidthTextBox.Location = new Point(146, 92);
             WidthTextBox.Name = "WidthTextBox";
+            WidthTextBox.ReadOnly = true;
             WidthTextBox.Size = new Size(100, 23);
             WidthTextBox.TabIndex = 3;
-            WidthTextBox.TextChanged += WidthTextBox_TextChanged;
             // 
             // LengthLabel
             // 
@@ -452,9 +515,9 @@
             // 
             LengthTextBox.Location = new Point(146, 40);
             LengthTextBox.Name = "LengthTextBox";
+            LengthTextBox.ReadOnly = true;
             LengthTextBox.Size = new Size(100, 23);
             LengthTextBox.TabIndex = 1;
-            LengthTextBox.TextChanged += LengthTextBox_TextChanged;
             // 
             // RectanglesListBox
             // 
@@ -462,7 +525,7 @@
             RectanglesListBox.ItemHeight = 15;
             RectanglesListBox.Location = new Point(6, 22);
             RectanglesListBox.Name = "RectanglesListBox";
-            RectanglesListBox.Size = new Size(120, 304);
+            RectanglesListBox.Size = new Size(120, 364);
             RectanglesListBox.TabIndex = 0;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
@@ -532,5 +595,11 @@
         private TextBox YearTextBox;
         private Label RatingLabel;
         private TextBox RatingTextBox;
+        private Label CenterYLabel;
+        private TextBox CenterYTextBox;
+        private Label CenterXLabel;
+        private TextBox CenterXTextBox;
+        private Label IdLabel;
+        private TextBox IdTextBox;
     }
 }

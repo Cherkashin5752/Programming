@@ -10,7 +10,6 @@ namespace Programming.Model.Class
     {
         private string _departure;
         private string _destination;
-        
         private int _time;
 
         public string Departure
@@ -30,9 +29,8 @@ namespace Programming.Model.Class
             get { return _time; }
             set
             {
-                if (_time < 0)
-                    throw new ArgumentException();
-                _time = value;
+                if (Validator.AssertOnPositiveValue(value))
+                    _time = value;
             }
         }
 

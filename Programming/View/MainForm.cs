@@ -15,7 +15,7 @@ namespace Programming
 
         private string[] _colors = { "Red", "Blue", "Green",
             "Yellow", "Orange", "Purple", "Pink", "Brown", "Black", "White" };
-        private string[] _movieNames = { "Inception", "The Godfather","Interstellar",
+        private string[] _movieNames = { "Inception", "The Godfather", "Interstellar",
             "Pulp Fiction", "The Matrix", "Gladiator", "Parasite", "Joker", "Avatar", "Titanic" };
         private string[] _movieGenres = { "Action", "Comedy", "Drama", "Horror", "Sci-Fi",
             "Thriller", "Documentary", "Fantasy", "Animation", "Romance" };
@@ -42,7 +42,7 @@ namespace Programming
                     _movieGenres[rnd.Next(0, 9)],
                     rnd.Next(100, 240),
                     rnd.Next(2000, 2026),
-                    (double)rnd.Next(0, 10) + (double)(rnd.Next(0, 10) / 10.0)
+                    (double)rnd.Next(0, 10) + (double)(rnd.Next(1, 10) / 10.0)
                     );
                 MoviesListBox.Items.Add($"Movie {i + 1}");
             }
@@ -190,42 +190,6 @@ namespace Programming
             _currentRectangle.Color = ColorTextBox.Text;
         }
 
-        // Проверяет и обновляет ширину текущего прямоугольника
-        private void WidthTextboxChanged()
-        {
-            try
-            {
-                double newWidth = double.Parse(WidthTextBox.Text);
-                if (newWidth < 0)
-                    throw new Exception();
-                _currentRectangle.Width = newWidth;
-                WidthTextBox.BackColor = System.Drawing.Color.White;
-            }
-            catch (Exception)
-            {
-                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
-                return;
-            }
-        }
-
-        // Проверяет и обновляет длину текущего прямоугольника
-        private void LenghtTextboxChanged()
-        {
-            try
-            {
-                double newLength = double.Parse(LengthTextBox.Text);
-                if (newLength < 0)
-                    throw new Exception();
-                _currentRectangle.Length = newLength;
-                LengthTextBox.BackColor = System.Drawing.Color.White;
-            }
-            catch (Exception)
-            {
-                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
-                return;
-            } 
-        }
-
         /// Обновляет список значений (ValuesListBox) в зависимости от выбранного перечисления
         private void ChangeValueListBox()
         {
@@ -296,6 +260,9 @@ namespace Programming
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color;
+            CenterXTextBox.Text = _currentRectangle.Center.X.ToString();
+            CenterYTextBox.Text = _currentRectangle.Center.Y.ToString();
+            IdTextBox.Text = _currentRectangle.Id.ToString();
         }
 
         // Обработчик изменения выбора в списке прямоугольников
@@ -326,18 +293,6 @@ namespace Programming
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ChangeIntValueTextBox();
-        }
-
-        // Обработчик изменения текста в поле длины прямоугольника
-        private void LengthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            LenghtTextboxChanged();
-        }
-
-        // Обработчик изменения текста в поле ширины прямоугольника
-        private void WidthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            WidthTextboxChanged();
         }
 
         // Обработчик изменения текста в поле цвета прямоугольника

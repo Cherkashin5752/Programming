@@ -31,9 +31,8 @@ namespace Programming.Model.Class
             get { return _duration; }
             set
             {
-                if (_duration < 0)
-                    throw new ArgumentException();
-                _duration = value;
+                if (Validator.AssertOnPositiveValue(value));
+                    _duration = value;
             }
         }
 
@@ -42,9 +41,8 @@ namespace Programming.Model.Class
             get { return _year; }
             set
             {
-                if (_year < 0)
-                    throw new ArgumentException();
-                _year = value;
+                if (Validator.AssertOnPositiveValue(value))
+                    _year = value;
             }
         }
 
@@ -53,13 +51,8 @@ namespace Programming.Model.Class
             get { return _rating; }
             set
             {
-                if (_rating > 10 || _rating < 0)
-                {
-                    throw new ArgumentException();
-                    return;
-                }
-                
-                _rating = value;
+                if (Validator.AssertValueInRange(value, 0, 10))
+                    _rating = value;
             }
         }
 

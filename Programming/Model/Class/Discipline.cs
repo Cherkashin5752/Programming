@@ -29,9 +29,8 @@ namespace Programming.Model.Class
             get { return _hoursPerSemester; }
             set
             {
-                if (_hoursPerSemester < 0)
-                    throw new ArgumentException();
-                _hoursPerSemester = value;
+                if (Validator.AssertOnPositiveValue(value))
+                    _hoursPerSemester = value;
             }
         }
 

@@ -11,7 +11,7 @@ namespace Programming.Model.Class
     {
         private string _name;
         private string _author;
-        private string _duration;
+        private int _duration;
 
         public string Name
         {
@@ -25,13 +25,17 @@ namespace Programming.Model.Class
             set { _author = value; }
         }
 
-        public string Duration
+        public int Duration
         {
             get { return _duration; }
-            set { _duration = value; }
+            set 
+            {
+                if (Validator.AssertOnPositiveValue(value))
+                    _duration = value;
+            }
         }
 
-        public Song(string name, string author, string duration)
+        public Song(string name, string author, int duration)
         {
             Name = name;
             Author = author;
