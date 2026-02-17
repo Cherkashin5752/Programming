@@ -51,6 +51,7 @@ namespace Programming.Model.Class
 
         }
 
+        // Проверяем наличие только латинских букв
         private bool AssertStringContainsOnlyLetters(string value)
         {
             if (Regex.IsMatch(value, "^[a-zA-Z]*$"))
