@@ -60,12 +60,12 @@ namespace Programming.Model.Class
             get { return _id; }
         }
 
-        public Rectangle(double length, double width, string color)
+        public Rectangle(double length, double width, string color, double centerX, double centerY)
         {
             Length = length;
             Width = width;
             Color = color;
-            Center = new Point2D(width / 2, length / 2);
+            Center = new Point2D(centerX, centerY);
             _allRectanglesCount++;
             _id = _allRectanglesCount;
         }

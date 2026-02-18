@@ -7,36 +7,44 @@ namespace Programming
     // Главная форма приложения, демонстрирующая работу с перечислениями
     public partial class MainForm : Form
     {
-        private Model.Class.Rectangle[] _rectangles = new Model.Class.Rectangle[5];
+        private Model.Class.Rectangle[] _rectangles = new Model.Class.Rectangle[10];
+        private List<Model.Class.Rectangle> _drawRectangles = new List<Model.Class.Rectangle>();
         private Model.Class.Rectangle _currentRectangle;
+        private Model.Class.Rectangle _drawCurrentRectangle;
 
-        private Model.Class.Movie[] _movies = new Model.Class.Movie[5];
-        private Model.Class.Movie _currentMovie;
+        private Movie[] _movies = new Model.Class.Movie[5];
+        private Movie _currentMovie;
 
-        private string[] _colors = { "Red", "Blue", "Green",
-            "Yellow", "Orange", "Purple", "Pink", "Brown", "Black", "White" };
+        private string[] _colors = { "Red", "Blue", "Green", "Yellow", "Orange",
+            "Purple", "Pink", "Brown", "Black", "White" };
         private string[] _movieNames = { "Inception", "The Godfather", "Interstellar",
             "Pulp Fiction", "The Matrix", "Gladiator", "Parasite", "Joker", "Avatar", "Titanic" };
-        private string[] _movieGenres = { "Action", "Comedy", "Drama", "Horror", "Sci-Fi",
-            "Thriller", "Documentary", "Fantasy", "Animation", "Romance" };
+        private string[] _movieGenres = { "Action", "Comedy", "Drama", "Horror",
+            "Sci-Fi", "Thriller", "Documentary", "Fantasy", "Animation", "Romance" };
+
+        Random rnd = new Random();
 
         // Создает экземпляр основной формы
         public MainForm()
         {
             InitializeComponent();
 
-            Random rnd = new Random();
 
             for (int i = 0; i < _rectangles.Length; i++)
             {
                 _rectangles[i] = new Model.Class.Rectangle(
                     rnd.Next(1, 31),
                     rnd.Next(1, 31),
-                    _colors[rnd.Next(0, 9)]
+                    _colors[rnd.Next(0, 9)],
+                    rnd.Next(1, 30),
+                    rnd.Next(1, 30)
                     );
 
                 RectanglesListBox.Items.Add($"Rectangles {i + 1}");
+            }
 
+            for (int i = 0; i < _movies.Length; i++)
+            {
                 _movies[i] = new Movie(
                     _movieNames[rnd.Next(0, 9)],
                     _movieGenres[rnd.Next(0, 9)],
@@ -44,6 +52,7 @@ namespace Programming
                     rnd.Next(2000, 2026),
                     (double)rnd.Next(0, 10) + (double)(rnd.Next(1, 10) / 10.0)
                     );
+
                 MoviesListBox.Items.Add($"Movie {i + 1}");
             }
         }
@@ -72,6 +81,20 @@ namespace Programming
             {
                 SeasonComboBox.Items.Add(season);
             }
+        }
+
+        private void AddRectangle()
+        {
+            Model.Class.Rectangle newRectangle = new Model.Class.Rectangle(rnd.Next(1, 30),
+                                                                            rnd.Next(1, 30),
+                                                                            _colors[rnd.Next(0, 10)],
+                                                                            rnd.Next(1, 30),
+                                                                            rnd.Next(1, 30)
+                                                                            );
+
+            _drawRectangles.Add(newRectangle);
+            DrawRectanglesListBox.Items.Add($"{newRectangle.Id - _rectangles.Length}: (X = {newRectangle.Center.X}," +
+                $" Y = {newRectangle.Center.Y} W = {newRectangle.Width}, H = {newRectangle.Length})");
         }
 
         // Проверяет и обновляет год выпуска текущего фильма
@@ -265,6 +288,17 @@ namespace Programming
             IdTextBox.Text = _currentRectangle.Id.ToString();
         }
 
+        public void DeleteRectanglesList()
+        {
+            if (DrawRectanglesListBox.SelectedIndex != -1)
+            { 
+                int selectedRectangle = DrawRectanglesListBox.SelectedIndex;
+
+                _drawRectangles.Remove(_drawRectangles[selectedRectangle]);
+                DrawRectanglesListBox.Items.RemoveAt(selectedRectangle);
+            }
+        }
+
         // Обработчик изменения выбора в списке прямоугольников
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -351,6 +385,16 @@ namespace Programming
         private void YearTextBox_TextChanged(object sender, EventArgs e)
         {
             YearTextboxChanged();
+        }
+
+        private void AddRectengleButton_Click(object sender, EventArgs e)
+        {
+            AddRectangle();
+        }
+
+        private void DeletRectangleButton_Click(object sender, EventArgs e)
+        {
+            DeleteRectanglesList();
         }
     }
 }

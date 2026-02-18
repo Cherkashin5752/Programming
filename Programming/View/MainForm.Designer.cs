@@ -73,6 +73,23 @@
             LengthLabel = new Label();
             LengthTextBox = new TextBox();
             RectanglesListBox = new ListBox();
+            Rectangles = new TabPage();
+            panel1 = new Panel();
+            DrawLengthLabel = new Label();
+            DrawWidthLabel = new Label();
+            DrawYLabel = new Label();
+            DrawXLabel = new Label();
+            DrawIdLabel = new Label();
+            DrawLengthTextBox = new TextBox();
+            DrawWidthTextBox = new TextBox();
+            DrawYTextBox = new TextBox();
+            DrawXTextBox = new TextBox();
+            DrawIdTextBox = new TextBox();
+            SelectedRectangleLabel = new Label();
+            DeletRectangleButton = new Button();
+            AddRectengleButton = new Button();
+            DrawRectangleLabel = new Label();
+            DrawRectanglesListBox = new ListBox();
             tabControl1.SuspendLayout();
             Enums.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -81,12 +98,14 @@
             Classes.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
+            Rectangles.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(Enums);
             tabControl1.Controls.Add(Classes);
+            tabControl1.Controls.Add(Rectangles);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -529,6 +548,169 @@
             RectanglesListBox.TabIndex = 0;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
+            // Rectangles
+            // 
+            Rectangles.Controls.Add(panel1);
+            Rectangles.Controls.Add(DrawLengthLabel);
+            Rectangles.Controls.Add(DrawWidthLabel);
+            Rectangles.Controls.Add(DrawYLabel);
+            Rectangles.Controls.Add(DrawXLabel);
+            Rectangles.Controls.Add(DrawIdLabel);
+            Rectangles.Controls.Add(DrawLengthTextBox);
+            Rectangles.Controls.Add(DrawWidthTextBox);
+            Rectangles.Controls.Add(DrawYTextBox);
+            Rectangles.Controls.Add(DrawXTextBox);
+            Rectangles.Controls.Add(DrawIdTextBox);
+            Rectangles.Controls.Add(SelectedRectangleLabel);
+            Rectangles.Controls.Add(DeletRectangleButton);
+            Rectangles.Controls.Add(AddRectengleButton);
+            Rectangles.Controls.Add(DrawRectangleLabel);
+            Rectangles.Controls.Add(DrawRectanglesListBox);
+            Rectangles.Location = new Point(4, 24);
+            Rectangles.Name = "Rectangles";
+            Rectangles.Padding = new Padding(3);
+            Rectangles.Size = new Size(792, 422);
+            Rectangles.TabIndex = 2;
+            Rectangles.Text = "Rectangles";
+            Rectangles.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Location = new Point(284, 13);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(500, 401);
+            panel1.TabIndex = 15;
+            // 
+            // DrawLengthLabel
+            // 
+            DrawLengthLabel.AutoSize = true;
+            DrawLengthLabel.Location = new Point(28, 383);
+            DrawLengthLabel.Name = "DrawLengthLabel";
+            DrawLengthLabel.Size = new Size(47, 15);
+            DrawLengthLabel.TabIndex = 14;
+            DrawLengthLabel.Text = "Length:";
+            // 
+            // DrawWidthLabel
+            // 
+            DrawWidthLabel.AutoSize = true;
+            DrawWidthLabel.Location = new Point(33, 352);
+            DrawWidthLabel.Name = "DrawWidthLabel";
+            DrawWidthLabel.Size = new Size(42, 15);
+            DrawWidthLabel.TabIndex = 13;
+            DrawWidthLabel.Text = "Width:";
+            // 
+            // DrawYLabel
+            // 
+            DrawYLabel.AutoSize = true;
+            DrawYLabel.Location = new Point(58, 321);
+            DrawYLabel.Name = "DrawYLabel";
+            DrawYLabel.Size = new Size(17, 15);
+            DrawYLabel.TabIndex = 12;
+            DrawYLabel.Text = "Y:";
+            // 
+            // DrawXLabel
+            // 
+            DrawXLabel.AutoSize = true;
+            DrawXLabel.Location = new Point(58, 290);
+            DrawXLabel.Name = "DrawXLabel";
+            DrawXLabel.Size = new Size(17, 15);
+            DrawXLabel.TabIndex = 11;
+            DrawXLabel.Text = "X:";
+            // 
+            // DrawIdLabel
+            // 
+            DrawIdLabel.AutoSize = true;
+            DrawIdLabel.Location = new Point(55, 259);
+            DrawIdLabel.Name = "DrawIdLabel";
+            DrawIdLabel.Size = new Size(20, 15);
+            DrawIdLabel.TabIndex = 10;
+            DrawIdLabel.Text = "Id:";
+            // 
+            // DrawLengthTextBox
+            // 
+            DrawLengthTextBox.Location = new Point(82, 380);
+            DrawLengthTextBox.Name = "DrawLengthTextBox";
+            DrawLengthTextBox.Size = new Size(100, 23);
+            DrawLengthTextBox.TabIndex = 9;
+            // 
+            // DrawWidthTextBox
+            // 
+            DrawWidthTextBox.Location = new Point(82, 349);
+            DrawWidthTextBox.Name = "DrawWidthTextBox";
+            DrawWidthTextBox.Size = new Size(100, 23);
+            DrawWidthTextBox.TabIndex = 8;
+            // 
+            // DrawYTextBox
+            // 
+            DrawYTextBox.Location = new Point(82, 318);
+            DrawYTextBox.Name = "DrawYTextBox";
+            DrawYTextBox.Size = new Size(100, 23);
+            DrawYTextBox.TabIndex = 7;
+            // 
+            // DrawXTextBox
+            // 
+            DrawXTextBox.Location = new Point(82, 287);
+            DrawXTextBox.Name = "DrawXTextBox";
+            DrawXTextBox.Size = new Size(100, 23);
+            DrawXTextBox.TabIndex = 6;
+            // 
+            // DrawIdTextBox
+            // 
+            DrawIdTextBox.Location = new Point(82, 256);
+            DrawIdTextBox.Name = "DrawIdTextBox";
+            DrawIdTextBox.Size = new Size(100, 23);
+            DrawIdTextBox.TabIndex = 5;
+            // 
+            // SelectedRectangleLabel
+            // 
+            SelectedRectangleLabel.AutoSize = true;
+            SelectedRectangleLabel.Location = new Point(8, 238);
+            SelectedRectangleLabel.Name = "SelectedRectangleLabel";
+            SelectedRectangleLabel.Size = new Size(106, 15);
+            SelectedRectangleLabel.TabIndex = 4;
+            SelectedRectangleLabel.Text = "SelectedRectangle:";
+            // 
+            // DeletRectangleButton
+            // 
+            DeletRectangleButton.FlatStyle = FlatStyle.System;
+            DeletRectangleButton.Location = new Point(159, 191);
+            DeletRectangleButton.Name = "DeletRectangleButton";
+            DeletRectangleButton.Size = new Size(75, 23);
+            DeletRectangleButton.TabIndex = 3;
+            DeletRectangleButton.Text = "Delet";
+            DeletRectangleButton.UseVisualStyleBackColor = true;
+            DeletRectangleButton.Click += DeletRectangleButton_Click;
+            // 
+            // AddRectengleButton
+            // 
+            AddRectengleButton.FlatStyle = FlatStyle.System;
+            AddRectengleButton.Location = new Point(32, 191);
+            AddRectengleButton.Name = "AddRectengleButton";
+            AddRectengleButton.Size = new Size(75, 23);
+            AddRectengleButton.TabIndex = 2;
+            AddRectengleButton.Text = "Add";
+            AddRectengleButton.UseVisualStyleBackColor = true;
+            AddRectengleButton.Click += AddRectengleButton_Click;
+            // 
+            // DrawRectangleLabel
+            // 
+            DrawRectangleLabel.AutoSize = true;
+            DrawRectangleLabel.Location = new Point(8, 13);
+            DrawRectangleLabel.Name = "DrawRectangleLabel";
+            DrawRectangleLabel.Size = new Size(67, 15);
+            DrawRectangleLabel.TabIndex = 1;
+            DrawRectangleLabel.Text = "Rectangles:";
+            // 
+            // DrawRectanglesListBox
+            // 
+            DrawRectanglesListBox.FormattingEnabled = true;
+            DrawRectanglesListBox.ItemHeight = 15;
+            DrawRectanglesListBox.Location = new Point(8, 31);
+            DrawRectanglesListBox.Name = "DrawRectanglesListBox";
+            DrawRectanglesListBox.Size = new Size(257, 154);
+            DrawRectanglesListBox.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -551,6 +733,8 @@
             groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
+            Rectangles.ResumeLayout(false);
+            Rectangles.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -601,5 +785,22 @@
         private TextBox CenterXTextBox;
         private Label IdLabel;
         private TextBox IdTextBox;
+        private TabPage Rectangles;
+        private Label DrawRectangleLabel;
+        private ListBox DrawRectanglesListBox;
+        private Button AddRectengleButton;
+        private TextBox DrawIdTextBox;
+        private Label SelectedRectangleLabel;
+        private Button DeletRectangleButton;
+        private Label DrawLengthLabel;
+        private Label DrawWidthLabel;
+        private Label DrawYLabel;
+        private Label DrawXLabel;
+        private Label DrawIdLabel;
+        private TextBox DrawLengthTextBox;
+        private TextBox DrawWidthTextBox;
+        private TextBox DrawYTextBox;
+        private TextBox DrawXTextBox;
+        private Panel panel1;
     }
 }
