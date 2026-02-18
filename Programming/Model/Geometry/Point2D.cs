@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Class
+namespace Programming.Model.Geometry
 {
     internal class Point2D
     {
@@ -14,8 +14,9 @@ namespace Programming.Model.Class
         public double X
         {
             get { return _x; }
-            private set
+            set
             {
+                Validator.AssertOnPositiveValue(value);
                 _x = value;
             }
         }
@@ -25,6 +26,7 @@ namespace Programming.Model.Class
             get { return _y; }
             private set
             {
+                Validator.AssertOnPositiveValue(value);
                 _y = value;
             }
         }

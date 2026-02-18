@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Class
+namespace Programming.Model.Geometry
 {
     static class CollisionManager
     {
@@ -14,8 +14,8 @@ namespace Programming.Model.Class
             // Если расстояния центров по X меньше разности их ширины и
             // если раастояние центров по Y меньше разности их длин,
             // то они пересекаются
-            if (Math.Abs(rectangle1.Center.X - rectangle2.Center.X) < Math.Abs(rectangle1.Width - rectangle2.Width) / 2 &&
-                Math.Abs(rectangle1.Center.Y - rectangle2.Center.Y) < Math.Abs(rectangle1.Length - rectangle2.Length) / 2)
+            if (Math.Abs(rectangle1.X - rectangle2.X) < Math.Abs(rectangle1.Width - rectangle2.Width) / 2 &&
+                Math.Abs(rectangle1.Y - rectangle2.Y) < Math.Abs(rectangle1.Length - rectangle2.Length) / 2)
                 return true;
             else
                 return false;
@@ -26,8 +26,8 @@ namespace Programming.Model.Class
         {
             // Если расстояние от центра одного кольца до другого меньше суммы их радусов
             // значит они пересекаются
-            if (Math.Sqrt(Math.Pow(Math.Abs(ring1.Center.X - ring2.Center.X), 2) +
-                Math.Pow(Math.Abs(ring1.Center.Y - ring2.Center.Y), 2)) < ring1.OuterRadius + ring2.OuterRadius)
+            if (Math.Sqrt(Math.Pow(Math.Abs(ring1.X - ring2.X), 2) +
+                Math.Pow(Math.Abs(ring1.Y - ring2.Y), 2)) < ring1.OuterRadius + ring2.OuterRadius)
                 return true;
             else
                 return false;

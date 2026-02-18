@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Class
+namespace Programming.Model
 {
     static class Validator
     {

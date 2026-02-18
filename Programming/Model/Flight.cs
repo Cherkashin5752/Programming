@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Class
+namespace Programming.Model
 {
     internal class Flight
     {

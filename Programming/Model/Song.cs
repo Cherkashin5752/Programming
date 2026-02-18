@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Programming.Model.Class
+namespace Programming.Model
 {
     internal class Song
     {

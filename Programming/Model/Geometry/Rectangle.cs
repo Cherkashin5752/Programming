@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Class
+namespace Programming.Model.Geometry
 {
     internal class Rectangle
     {
@@ -25,9 +25,9 @@ namespace Programming.Model.Class
         {
             get { return _length; }
             set
-            { 
-                if (Validator.AssertOnPositiveValue(value))
-                    _length = value;
+            {
+                Validator.AssertOnPositiveValue(value);
+                _length = value;
             }
         }
 
@@ -36,17 +36,8 @@ namespace Programming.Model.Class
             get { return _width; }
             set
             {
-                if (Validator.AssertOnPositiveValue(value))
-                    _width = value;
-            }
-        }
-
-        public Point2D Center
-        {
-            get { return _center; }
-            private set
-            {
-                _center = value;
+                Validator.AssertOnPositiveValue(value);
+                _width = value;
             }
         }
 
@@ -60,19 +51,32 @@ namespace Programming.Model.Class
             get { return _id; }
         }
 
+        public double X
+        {
+            get { return _center.X; }
+            set => _center = new Point2D(value, _center.Y);
+        }
+
+        public double Y
+        {
+            get => _center.Y;
+            set => _center = new Point2D(_center.X, value);
+        }
+
         public Rectangle(double length, double width, string color, double centerX, double centerY)
         {
             Length = length;
             Width = width;
             Color = color;
-            Center = new Point2D(centerX, centerY);
+            _center = new Point2D(centerX, centerY);
             _allRectanglesCount++;
             _id = _allRectanglesCount;
         }
 
         public Rectangle()
         {
-
+            _allRectanglesCount++;
+            _id = _allRectanglesCount;
         }
     }
 }

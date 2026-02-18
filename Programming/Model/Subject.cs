@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Class
+namespace Programming.Model
 {
-    internal class Discipline
+    internal class Subject
     {
         private string _name;
         private string _teacherName;
@@ -34,14 +34,14 @@ namespace Programming.Model.Class
             }
         }
 
-        public Discipline(string name, string teacherName, int hoursPerSemester)
+        public Subject(string name, string teacherName, int hoursPerSemester)
         {
             Name = name;
             TeacherName = teacherName;
             HoursPerSemester = hoursPerSemester;
         }
 
-        public Discipline()
+        public Subject()
         {
 
         }

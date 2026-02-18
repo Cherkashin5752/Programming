@@ -1,18 +1,18 @@
 using System.Reflection;
 using Programming.Model.Enums;
-using Programming.Model.Class;
+using Programming.Model;
 
 namespace Programming
 {
     // Главная форма приложения, демонстрирующая работу с перечислениями
     public partial class MainForm : Form
     {
-        private Model.Class.Rectangle[] _rectangles = new Model.Class.Rectangle[10];
-        private List<Model.Class.Rectangle> _drawRectangles = new List<Model.Class.Rectangle>();
-        private Model.Class.Rectangle _currentRectangle;
-        private Model.Class.Rectangle _drawCurrentRectangle;
+        private Model.Geometry.Rectangle[] _rectangles = new Model.Geometry.Rectangle[10];
+        private List<Model.Geometry.Rectangle> _drawRectangles = new List<Model.Geometry.Rectangle>();
+        private Model.Geometry.Rectangle _currentRectangle;
+        private Model.Geometry.Rectangle _drawCurrentRectangle;
 
-        private Movie[] _movies = new Model.Class.Movie[5];
+        private Movie[] _movies = new Movie[5];
         private Movie _currentMovie;
 
         private string[] _colors = { "Red", "Blue", "Green", "Yellow", "Orange",
@@ -29,10 +29,9 @@ namespace Programming
         {
             InitializeComponent();
 
-
             for (int i = 0; i < _rectangles.Length; i++)
             {
-                _rectangles[i] = new Model.Class.Rectangle(
+                _rectangles[i] = new Model.Geometry.Rectangle(
                     rnd.Next(1, 31),
                     rnd.Next(1, 31),
                     _colors[rnd.Next(0, 9)],
@@ -85,7 +84,7 @@ namespace Programming
 
         private void AddRectangle()
         {
-            Model.Class.Rectangle newRectangle = new Model.Class.Rectangle(rnd.Next(1, 30),
+            Model.Geometry.Rectangle newRectangle = new Model.Geometry.Rectangle(rnd.Next(1, 30),
                                                                             rnd.Next(1, 30),
                                                                             _colors[rnd.Next(0, 10)],
                                                                             rnd.Next(1, 30),
@@ -93,8 +92,8 @@ namespace Programming
                                                                             );
 
             _drawRectangles.Add(newRectangle);
-            DrawRectanglesListBox.Items.Add($"{newRectangle.Id - _rectangles.Length}: (X = {newRectangle.Center.X}," +
-                $" Y = {newRectangle.Center.Y} W = {newRectangle.Width}, H = {newRectangle.Length})");
+            DrawRectanglesListBox.Items.Add($"{newRectangle.Id}: (X = {newRectangle.X}," +
+                $" Y = {newRectangle.Y}, W = {newRectangle.Width}, H = {newRectangle.Length})");
         }
 
         // Проверяет и обновляет год выпуска текущего фильма
@@ -121,8 +120,6 @@ namespace Programming
             try
             {
                 double newRating = double.Parse(RatingTextBox.Text);
-                if (newRating < 0 && newRating > 10)
-                    throw new Exception();
                 _currentMovie.Rating = newRating;
                 RatingTextBox.BackColor = System.Drawing.Color.White;
             }
@@ -139,8 +136,6 @@ namespace Programming
             try
             {
                 int newDuration = int.Parse(DurationTextBox.Text);
-                if (newDuration < 0)
-                    throw new Exception();
                 _currentMovie.Duration = newDuration;
                 DurationTextBox.BackColor = System.Drawing.Color.White;
             }
@@ -283,19 +278,79 @@ namespace Programming
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color;
-            CenterXTextBox.Text = _currentRectangle.Center.X.ToString();
-            CenterYTextBox.Text = _currentRectangle.Center.Y.ToString();
+            CenterXTextBox.Text = _currentRectangle.ToString();
+            CenterYTextBox.Text = _currentRectangle.ToString();
             IdTextBox.Text = _currentRectangle.Id.ToString();
         }
 
         public void DeleteRectanglesList()
         {
             if (DrawRectanglesListBox.SelectedIndex != -1)
-            { 
+            {
                 int selectedRectangle = DrawRectanglesListBox.SelectedIndex;
 
                 _drawRectangles.Remove(_drawRectangles[selectedRectangle]);
                 DrawRectanglesListBox.Items.RemoveAt(selectedRectangle);
+
+                DrawXTextBox.BackColor = System.Drawing.Color.White;
+            }
+        }
+
+        public void ChangeRectangleListBoxs()
+        {
+            if (DrawRectanglesListBox.SelectedIndex != -1)
+            {
+                _drawCurrentRectangle = _drawRectangles[DrawRectanglesListBox.SelectedIndex];
+
+                DrawIdTextBox.Text = (_drawCurrentRectangle.Id).ToString();
+                DrawXTextBox.Text = _drawCurrentRectangle.ToString();
+                DrawYTextBox.Text = _drawCurrentRectangle.ToString();
+                DrawWidthTextBox.Text = _drawCurrentRectangle.Width.ToString();
+                DrawLengthTextBox.Text = _drawCurrentRectangle.Length.ToString();
+            }
+            else
+            {
+                DrawIdTextBox.Text = "";
+                DrawXTextBox.Text = "";
+                DrawYTextBox.Text = "";
+                DrawWidthTextBox.Text = "";
+                DrawLengthTextBox.Text = "";
+            }
+        }
+
+        public void DrawXTextBoxChanged()
+        {
+            try
+            {
+                int newX = int.Parse(DrawXTextBox.Text);
+                _drawCurrentRectangle.X = newX;
+                DrawRectanglesListBox.Items[DrawRectanglesListBox.SelectedIndex] = $"{_drawCurrentRectangle.Id}: " +
+                    $"(X = {_drawCurrentRectangle.X}, Y = {_drawCurrentRectangle.Y}, W = {_drawCurrentRectangle.Width}, " +
+                    $" H = {_drawCurrentRectangle.Length})";
+                DrawXTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch (Exception)
+            {
+                DrawXTextBox.BackColor = System.Drawing.Color.LightPink;
+                return;
+            }
+        }
+
+        public void DrawYTextBoxChanged()
+        {
+            try
+            {
+                int newY = int.Parse(DrawYTextBox.Text);
+                _drawCurrentRectangle.Y = newY;
+                DrawRectanglesListBox.Items[DrawRectanglesListBox.SelectedIndex] = $"{_drawCurrentRectangle.Id}: " +
+                    $"(X = {_drawCurrentRectangle.X}, Y = {_drawCurrentRectangle.Y}, W = {_drawCurrentRectangle.Width}, " +
+                    $" H = {_drawCurrentRectangle.Length})";
+                DrawXTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch (Exception)
+            {
+                DrawXTextBox.BackColor = System.Drawing.Color.LightPink;
+                return;
             }
         }
 
@@ -395,6 +450,31 @@ namespace Programming
         private void DeletRectangleButton_Click(object sender, EventArgs e)
         {
             DeleteRectanglesList();
+        }
+
+        private void DrawRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangeRectangleListBoxs();
+        }
+
+        private void DrawXTextBox_TextChanged(object sender, EventArgs e)
+        {
+            DrawXTextBoxChanged();
+        }
+
+        private void DrawYTextBox_TextChanged(object sender, EventArgs e)
+        {
+            DrawYTextBoxChanged();
+        }
+
+        private void DrawWidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DrawLengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -587,9 +587,9 @@
             DrawLengthLabel.AutoSize = true;
             DrawLengthLabel.Location = new Point(28, 383);
             DrawLengthLabel.Name = "DrawLengthLabel";
-            DrawLengthLabel.Size = new Size(47, 15);
+            DrawLengthLabel.Size = new Size(46, 15);
             DrawLengthLabel.TabIndex = 14;
-            DrawLengthLabel.Text = "Length:";
+            DrawLengthLabel.Text = "Height:";
             // 
             // DrawWidthLabel
             // 
@@ -633,6 +633,7 @@
             DrawLengthTextBox.Name = "DrawLengthTextBox";
             DrawLengthTextBox.Size = new Size(100, 23);
             DrawLengthTextBox.TabIndex = 9;
+            DrawLengthTextBox.TextChanged += DrawLengthTextBox_TextChanged;
             // 
             // DrawWidthTextBox
             // 
@@ -640,6 +641,7 @@
             DrawWidthTextBox.Name = "DrawWidthTextBox";
             DrawWidthTextBox.Size = new Size(100, 23);
             DrawWidthTextBox.TabIndex = 8;
+            DrawWidthTextBox.TextChanged += DrawWidthTextBox_TextChanged;
             // 
             // DrawYTextBox
             // 
@@ -647,6 +649,7 @@
             DrawYTextBox.Name = "DrawYTextBox";
             DrawYTextBox.Size = new Size(100, 23);
             DrawYTextBox.TabIndex = 7;
+            DrawYTextBox.TextChanged += DrawYTextBox_TextChanged;
             // 
             // DrawXTextBox
             // 
@@ -654,11 +657,13 @@
             DrawXTextBox.Name = "DrawXTextBox";
             DrawXTextBox.Size = new Size(100, 23);
             DrawXTextBox.TabIndex = 6;
+            DrawXTextBox.TextChanged += DrawXTextBox_TextChanged;
             // 
             // DrawIdTextBox
             // 
             DrawIdTextBox.Location = new Point(82, 256);
             DrawIdTextBox.Name = "DrawIdTextBox";
+            DrawIdTextBox.ReadOnly = true;
             DrawIdTextBox.Size = new Size(100, 23);
             DrawIdTextBox.TabIndex = 5;
             // 
@@ -710,6 +715,7 @@
             DrawRectanglesListBox.Name = "DrawRectanglesListBox";
             DrawRectanglesListBox.Size = new Size(257, 154);
             DrawRectanglesListBox.TabIndex = 0;
+            DrawRectanglesListBox.SelectedIndexChanged += DrawRectanglesListBox_SelectedIndexChanged;
             // 
             // MainForm
             // 

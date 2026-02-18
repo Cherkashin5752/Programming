@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Class
+namespace Programming.Model
 {
     internal class Time
     {

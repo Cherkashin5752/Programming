@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Class
+namespace Programming.Model.Geometry
 {
     internal class Ring
     {
@@ -16,6 +16,26 @@ namespace Programming.Model.Class
         {
             get { return _center; }
             set { _center = value; }
+        }
+
+        public double X
+        {
+            get { return _center.X; }
+            set
+            {
+                Validator.AssertOnPositiveValue(value);
+                _center = new Point2D(value, Y);
+            }
+        }
+
+        public double Y
+        {
+            get { return _center.Y; }
+            set
+            {
+                Validator.AssertOnPositiveValue(value);
+                _center = new Point2D(X, value);
+            }
         }
 
         public double OuterRadius
