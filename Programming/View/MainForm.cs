@@ -278,8 +278,8 @@ namespace Programming
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color;
-            CenterXTextBox.Text = _currentRectangle.ToString();
-            CenterYTextBox.Text = _currentRectangle.ToString();
+            CenterXTextBox.Text = _currentRectangle.X.ToString();
+            CenterYTextBox.Text = _currentRectangle.Y.ToString();
             IdTextBox.Text = _currentRectangle.Id.ToString();
         }
 
@@ -303,8 +303,8 @@ namespace Programming
                 _drawCurrentRectangle = _drawRectangles[DrawRectanglesListBox.SelectedIndex];
 
                 DrawIdTextBox.Text = (_drawCurrentRectangle.Id).ToString();
-                DrawXTextBox.Text = _drawCurrentRectangle.ToString();
-                DrawYTextBox.Text = _drawCurrentRectangle.ToString();
+                DrawXTextBox.Text = _drawCurrentRectangle.X.ToString();
+                DrawYTextBox.Text = _drawCurrentRectangle.Y.ToString();
                 DrawWidthTextBox.Text = _drawCurrentRectangle.Width.ToString();
                 DrawLengthTextBox.Text = _drawCurrentRectangle.Length.ToString();
             }
@@ -350,6 +350,42 @@ namespace Programming
             catch (Exception)
             {
                 DrawXTextBox.BackColor = System.Drawing.Color.LightPink;
+                return;
+            }
+        }
+
+        public void DrawWidthTextBoxChanged()
+        {
+            try
+            {
+                int newWidth = int.Parse(DrawWidthTextBox.Text);
+                _drawCurrentRectangle.Width = newWidth;
+                DrawRectanglesListBox.Items[DrawRectanglesListBox.SelectedIndex] = $"{_drawCurrentRectangle.Id}: " +
+                    $"(X = {_drawCurrentRectangle.X}, Y = {_drawCurrentRectangle.Y}, W = {_drawCurrentRectangle.Width}, " +
+                    $" H = {_drawCurrentRectangle.Length})";
+                DrawWidthTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch (Exception)
+            {
+                DrawWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                return;
+            }
+        }
+
+        public void DrawLengthTextBoxChanged()
+        {
+            try
+            {
+                int newLength = int.Parse(DrawLengthTextBox.Text);
+                _drawCurrentRectangle.Length = newLength;
+                DrawRectanglesListBox.Items[DrawRectanglesListBox.SelectedIndex] = $"{_drawCurrentRectangle.Id}: " +
+                    $"(X = {_drawCurrentRectangle.X}, Y = {_drawCurrentRectangle.Y}, W = {_drawCurrentRectangle.Width}, " +
+                    $" H = {_drawCurrentRectangle.Length})";
+                DrawLengthTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch (Exception)
+            {
+                DrawLengthTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
         }
@@ -469,12 +505,12 @@ namespace Programming
 
         private void DrawWidthTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            DrawWidthTextBoxChanged();
         }
 
         private void DrawLengthTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            DrawLengthTextBoxChanged();
         }
     }
 }
