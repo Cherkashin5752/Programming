@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Хранит в себе информацию о кольце
+    /// </summary>
     internal class Ring
     {
         private Point2D _center;
         private double _innerRadius;
         private double _outerRadius;
 
-        public Point2D Center
-        {
-            get { return _center; }
-            set { _center = value; }
-        }
-
+        /// <summary>
+        /// Возвращает и задаёт значение координаты X кольца. Только положительное число
+        /// </summary>
         public int X
         {
             get { return _center.X; }
@@ -28,6 +28,9 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт значение координаты Y кольца. Только положительное число
+        /// </summary>
         public int Y
         {
             get { return _center.Y; }
@@ -38,6 +41,9 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт значение внешнего радиуса кольца. Только положительно число
+        /// </summary>
         public double OuterRadius
         {
             get { return _outerRadius; }
@@ -47,6 +53,10 @@ namespace Programming.Model.Geometry
                     _outerRadius = value;
             }
         }
+
+        /// <summary>
+        /// Возвращает и задаёт значение внутреннего радиуса кольца. Только положительно число
+        /// </summary>
         public double InnerRadius
         {
             get { return _innerRadius; }
@@ -57,6 +67,9 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Возвращает площадь кольца между внутренней и внешней частью
+        /// </summary>
         public double Area
         {
             get { return Math.PI * Math.Pow(OuterRadius, 2) - Math.PI * Math.Pow(InnerRadius, 2); }
@@ -66,7 +79,7 @@ namespace Programming.Model.Geometry
         {
             InnerRadius = innerRadius;
             OuterRadius = outerRadius;
-            Center = new Point2D(centerX, centerY);
+            _center = new Point2D(centerX, centerY);
         }
 
         public Ring()

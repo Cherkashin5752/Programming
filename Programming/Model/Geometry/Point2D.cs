@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Хранит координаты X и Y
+    /// </summary>
     internal class Point2D
     {
         private int _x;
         private int _y;
 
+        /// <summary>
+        /// Возвращает и задаёт значение координаты X. Только положительное число
+        /// </summary>
         public int X
         {
             get { return _x; }
@@ -21,6 +27,9 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт значение координаты Y. Только положительное число
+        /// </summary>
         public int Y
         {
             get { return _y; }

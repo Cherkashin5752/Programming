@@ -6,24 +6,36 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о учебном предмете
+    /// </summary>
     internal class Subject
     {
         private string _name;
         private string _teacherName;
         private int _hoursPerSemester;
     
+        /// <summary>
+        /// Возвращает и задаёт название предмета
+        /// </summary>
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт имя преподавателя предмета
+        /// </summary>
         public string TeacherName
         {
             get { return _teacherName; }
             set { _teacherName = value; }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт количество часов в семестре этого предмета. Только положительно число
+        /// </summary>
         public int HoursPerSemester
         {
             get { return _hoursPerSemester; }
