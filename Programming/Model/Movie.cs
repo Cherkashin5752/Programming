@@ -41,7 +41,7 @@ namespace Programming.Model
             get { return _year; }
             set
             {
-                if (Validator.AssertOnPositiveValue(value))
+                if (Validator.AssertValueInRange(value, 1900, 3000))
                     _year = value;
             }
         }
