@@ -74,7 +74,7 @@
             LengthTextBox = new TextBox();
             RectanglesListBox = new ListBox();
             Rectangles = new TabPage();
-            panel1 = new Panel();
+            CanvasPanel = new Panel();
             DrawLengthLabel = new Label();
             DrawWidthLabel = new Label();
             DrawYLabel = new Label();
@@ -550,7 +550,7 @@
             // 
             // Rectangles
             // 
-            Rectangles.Controls.Add(panel1);
+            Rectangles.Controls.Add(CanvasPanel);
             Rectangles.Controls.Add(DrawLengthLabel);
             Rectangles.Controls.Add(DrawWidthLabel);
             Rectangles.Controls.Add(DrawYLabel);
@@ -574,13 +574,13 @@
             Rectangles.Text = "Rectangles";
             Rectangles.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // CanvasPanel
             // 
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Location = new Point(284, 13);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(500, 401);
-            panel1.TabIndex = 15;
+            CanvasPanel.BorderStyle = BorderStyle.FixedSingle;
+            CanvasPanel.Location = new Point(284, 13);
+            CanvasPanel.Name = "CanvasPanel";
+            CanvasPanel.Size = new Size(500, 401);
+            CanvasPanel.TabIndex = 15;
             // 
             // DrawLengthLabel
             // 
@@ -807,6 +807,6 @@
         private TextBox DrawWidthTextBox;
         private TextBox DrawYTextBox;
         private TextBox DrawXTextBox;
-        private Panel panel1;
+        private Panel CanvasPanel;
     }
 }

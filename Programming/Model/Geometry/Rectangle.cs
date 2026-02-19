@@ -9,8 +9,8 @@ namespace Programming.Model.Geometry
     internal class Rectangle
     {
         private string _color;
-        private double _length;
-        private double _width;
+        private int _length;
+        private int _width;
         private Point2D _center;
         private static int _allRectanglesCount;
         private int _id;
@@ -21,7 +21,7 @@ namespace Programming.Model.Geometry
             set { _color = value; }
         }
 
-        public double Length
+        public int Length
         {
             get { return _length; }
             set
@@ -31,7 +31,7 @@ namespace Programming.Model.Geometry
             }
         }
 
-        public double Width
+        public int Width
         {
             get { return _width; }
             set
@@ -51,19 +51,19 @@ namespace Programming.Model.Geometry
             get { return _id; }
         }
 
-        public double X
+        public int X
         {
             get { return _center.X; }
             set => _center = new Point2D(value, _center.Y);
         }
 
-        public double Y
+        public int Y
         {
             get => _center.Y;
             set => _center = new Point2D(_center.X, value);
         }
 
-        public Rectangle(double length, double width, string color, double centerX, double centerY)
+        public Rectangle(int length, int width, string color, int centerX, int centerY)
         {
             Length = length;
             Width = width;

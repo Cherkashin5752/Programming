@@ -8,10 +8,10 @@ namespace Programming.Model.Geometry
 {
     internal class Point2D
     {
-        private double _x;
-        private double _y;
+        private int _x;
+        private int _y;
 
-        public double X
+        public int X
         {
             get { return _x; }
             set
@@ -21,7 +21,7 @@ namespace Programming.Model.Geometry
             }
         }
 
-        public double Y
+        public int Y
         {
             get { return _y; }
             private set
@@ -31,7 +31,7 @@ namespace Programming.Model.Geometry
             }
         }
 
-        public Point2D(double x, double y)
+        public Point2D(int x, int y)
         {
             X = x;
             Y = y;

@@ -18,7 +18,7 @@ namespace Programming.Model.Geometry
             set { _center = value; }
         }
 
-        public double X
+        public int X
         {
             get { return _center.X; }
             set
@@ -28,7 +28,7 @@ namespace Programming.Model.Geometry
             }
         }
 
-        public double Y
+        public int Y
         {
             get { return _center.Y; }
             set
@@ -62,11 +62,11 @@ namespace Programming.Model.Geometry
             get { return Math.PI * Math.Pow(OuterRadius, 2) - Math.PI * Math.Pow(InnerRadius, 2); }
         }
 
-        public Ring(double innerRadius, double outerRadius)
+        public Ring(double innerRadius, double outerRadius, int centerX, int centerY)
         {
             InnerRadius = innerRadius;
             OuterRadius = outerRadius;
-            Center = new Point2D(OuterRadius / 2, OuterRadius / 2);
+            Center = new Point2D(centerX, centerY);
         }
 
         public Ring()

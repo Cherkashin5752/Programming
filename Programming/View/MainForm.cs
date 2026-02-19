@@ -1,6 +1,7 @@
 using System.Reflection;
 using Programming.Model.Enums;
 using Programming.Model;
+using Programming.Model.Geometry;
 
 namespace Programming
 {
@@ -11,12 +12,12 @@ namespace Programming
         private List<Model.Geometry.Rectangle> _drawRectangles = new List<Model.Geometry.Rectangle>();
         private Model.Geometry.Rectangle _currentRectangle;
         private Model.Geometry.Rectangle _drawCurrentRectangle;
+        private List<Panel> _rectanglePanels = new List<Panel>();
 
         private Movie[] _movies = new Movie[5];
         private Movie _currentMovie;
 
-        private string[] _colors = { "Red", "Blue", "Green", "Yellow", "Orange",
-            "Purple", "Pink", "Brown", "Black", "White" };
+        
         private string[] _movieNames = { "Inception", "The Godfather", "Interstellar",
             "Pulp Fiction", "The Matrix", "Gladiator", "Parasite", "Joker", "Avatar", "Titanic" };
         private string[] _movieGenres = { "Action", "Comedy", "Drama", "Horror",
@@ -31,13 +32,7 @@ namespace Programming
 
             for (int i = 0; i < _rectangles.Length; i++)
             {
-                _rectangles[i] = new Model.Geometry.Rectangle(
-                    rnd.Next(1, 31),
-                    rnd.Next(1, 31),
-                    _colors[rnd.Next(0, 9)],
-                    rnd.Next(1, 30),
-                    rnd.Next(1, 30)
-                    );
+                _rectangles[i] = RectangleFactory.Randomize();
 
                 RectanglesListBox.Items.Add($"Rectangles {i + 1}");
             }
@@ -84,16 +79,24 @@ namespace Programming
 
         private void AddRectangle()
         {
-            Model.Geometry.Rectangle newRectangle = new Model.Geometry.Rectangle(rnd.Next(1, 30),
-                                                                            rnd.Next(1, 30),
-                                                                            _colors[rnd.Next(0, 10)],
-                                                                            rnd.Next(1, 30),
-                                                                            rnd.Next(1, 30)
-                                                                            );
+            Model.Geometry.Rectangle newRectangle = RectangleFactory.Randomize();
 
             _drawRectangles.Add(newRectangle);
             DrawRectanglesListBox.Items.Add($"{newRectangle.Id}: (X = {newRectangle.X}," +
                 $" Y = {newRectangle.Y}, W = {newRectangle.Width}, H = {newRectangle.Length})");
+
+            Panel newPanel = new Panel();
+
+            newPanel.Location = new Point(newRectangle.X, newRectangle.Y);
+            newPanel.Width = newRectangle.Width;
+            newPanel.Height = newRectangle.Length;
+            newPanel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+
+            _rectanglePanels.Add(newPanel);
+
+            CanvasPanel.Controls.Add(newPanel);
+
+            FindCollision();
         }
 
         // Проверяет и обновляет год выпуска текущего фильма
@@ -292,7 +295,10 @@ namespace Programming
                 _drawRectangles.Remove(_drawRectangles[selectedRectangle]);
                 DrawRectanglesListBox.Items.RemoveAt(selectedRectangle);
 
-                DrawXTextBox.BackColor = System.Drawing.Color.White;
+                _rectanglePanels.RemoveAt(selectedRectangle);
+                CanvasPanel.Controls.RemoveAt(selectedRectangle);
+
+                FindCollision();
             }
         }
 
@@ -302,7 +308,7 @@ namespace Programming
             {
                 _drawCurrentRectangle = _drawRectangles[DrawRectanglesListBox.SelectedIndex];
 
-                DrawIdTextBox.Text = (_drawCurrentRectangle.Id).ToString();
+                DrawIdTextBox.Text = _drawCurrentRectangle.Id.ToString();
                 DrawXTextBox.Text = _drawCurrentRectangle.X.ToString();
                 DrawYTextBox.Text = _drawCurrentRectangle.Y.ToString();
                 DrawWidthTextBox.Text = _drawCurrentRectangle.Width.ToString();
@@ -310,11 +316,7 @@ namespace Programming
             }
             else
             {
-                DrawIdTextBox.Text = "";
-                DrawXTextBox.Text = "";
-                DrawYTextBox.Text = "";
-                DrawWidthTextBox.Text = "";
-                DrawLengthTextBox.Text = "";
+                ClearRectangleIndo();
             }
         }
 
@@ -324,10 +326,9 @@ namespace Programming
             {
                 int newX = int.Parse(DrawXTextBox.Text);
                 _drawCurrentRectangle.X = newX;
-                DrawRectanglesListBox.Items[DrawRectanglesListBox.SelectedIndex] = $"{_drawCurrentRectangle.Id}: " +
-                    $"(X = {_drawCurrentRectangle.X}, Y = {_drawCurrentRectangle.Y}, W = {_drawCurrentRectangle.Width}, " +
-                    $" H = {_drawCurrentRectangle.Length})";
+                UpdateRectangleInfo(_drawCurrentRectangle);
                 DrawXTextBox.BackColor = System.Drawing.Color.White;
+                FindCollision();
             }
             catch (Exception)
             {
@@ -342,14 +343,13 @@ namespace Programming
             {
                 int newY = int.Parse(DrawYTextBox.Text);
                 _drawCurrentRectangle.Y = newY;
-                DrawRectanglesListBox.Items[DrawRectanglesListBox.SelectedIndex] = $"{_drawCurrentRectangle.Id}: " +
-                    $"(X = {_drawCurrentRectangle.X}, Y = {_drawCurrentRectangle.Y}, W = {_drawCurrentRectangle.Width}, " +
-                    $" H = {_drawCurrentRectangle.Length})";
-                DrawXTextBox.BackColor = System.Drawing.Color.White;
+                UpdateRectangleInfo(_drawCurrentRectangle);
+                DrawYTextBox.BackColor = System.Drawing.Color.White;
+                FindCollision();
             }
             catch (Exception)
             {
-                DrawXTextBox.BackColor = System.Drawing.Color.LightPink;
+                DrawYTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
         }
@@ -360,10 +360,9 @@ namespace Programming
             {
                 int newWidth = int.Parse(DrawWidthTextBox.Text);
                 _drawCurrentRectangle.Width = newWidth;
-                DrawRectanglesListBox.Items[DrawRectanglesListBox.SelectedIndex] = $"{_drawCurrentRectangle.Id}: " +
-                    $"(X = {_drawCurrentRectangle.X}, Y = {_drawCurrentRectangle.Y}, W = {_drawCurrentRectangle.Width}, " +
-                    $" H = {_drawCurrentRectangle.Length})";
+                UpdateRectangleInfo(_drawCurrentRectangle);
                 DrawWidthTextBox.BackColor = System.Drawing.Color.White;
+                FindCollision();
             }
             catch (Exception)
             {
@@ -378,16 +377,64 @@ namespace Programming
             {
                 int newLength = int.Parse(DrawLengthTextBox.Text);
                 _drawCurrentRectangle.Length = newLength;
-                DrawRectanglesListBox.Items[DrawRectanglesListBox.SelectedIndex] = $"{_drawCurrentRectangle.Id}: " +
-                    $"(X = {_drawCurrentRectangle.X}, Y = {_drawCurrentRectangle.Y}, W = {_drawCurrentRectangle.Width}, " +
-                    $" H = {_drawCurrentRectangle.Length})";
+                UpdateRectangleInfo(_drawCurrentRectangle);
                 DrawLengthTextBox.BackColor = System.Drawing.Color.White;
+                FindCollision();
             }
             catch (Exception)
             {
                 DrawLengthTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
+        }
+
+        private void FindCollision()
+        {
+            foreach (var panel in _rectanglePanels)
+            {
+                panel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            }
+
+            for (int i = 0; i < _rectanglePanels.Count - 1; i++)
+            {
+                for (int j = i+1; j < _rectanglePanels.Count; j++)
+                {
+                    if (CollisionManager.IsCollision(_drawRectangles[i], _drawRectangles[j]))
+                    {
+                        _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                        _rectanglePanels[j].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                    }
+
+                }
+            }
+        }
+
+        private void UpdateRectangleInfo(Model.Geometry.Rectangle rectangle)
+        {
+            int index = DrawRectanglesListBox.SelectedIndex;
+
+            DrawRectanglesListBox.Items[index] = $"{rectangle.Id}: (X = {rectangle.X}, Y = {rectangle.Y}, W = {rectangle.Width}, H = {rectangle.Length})";
+
+            Panel panel = _rectanglePanels[index];
+
+            panel.Location = new Point(rectangle.X, rectangle.Y);
+            panel.Width = rectangle.Width;
+            panel.Height = rectangle.Length;
+
+            FindCollision();
+        }
+
+        private void ClearRectangleIndo()
+        {
+            DrawIdTextBox.Text = "";
+            DrawXTextBox.Text = "";
+            DrawYTextBox.Text = "";
+            DrawWidthTextBox.Text = "";
+            DrawLengthTextBox.Text = "";
+            DrawXTextBox.BackColor = System.Drawing.Color.White;
+            DrawYTextBox.BackColor = System.Drawing.Color.White;
+            DrawWidthTextBox.BackColor = System.Drawing.Color.White;
+            DrawLengthTextBox.BackColor = System.Drawing.Color.White;
         }
 
         // Обработчик изменения выбора в списке прямоугольников

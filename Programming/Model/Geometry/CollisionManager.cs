@@ -11,14 +11,10 @@ namespace Programming.Model.Geometry
         // Проверка пересечения прямоугольников
         public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
         {
-            // Если расстояния центров по X меньше разности их ширины и
-            // если раастояние центров по Y меньше разности их длин,
-            // то они пересекаются
-            if (Math.Abs(rectangle1.X - rectangle2.X) < Math.Abs(rectangle1.Width - rectangle2.Width) / 2 &&
-                Math.Abs(rectangle1.Y - rectangle2.Y) < Math.Abs(rectangle1.Length - rectangle2.Length) / 2)
-                return true;
-            else
-                return false;
+            return rectangle1.X < rectangle2.X + rectangle2.Width &&
+                   rectangle1.X + rectangle1.Width > rectangle2.X &&
+                   rectangle1.Y < rectangle2.Y + rectangle2.Length &&
+                   rectangle1.Y + rectangle1.Length > rectangle2.Y;
         }
 
         // Проверка пересечения колец
