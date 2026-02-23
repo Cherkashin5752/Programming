@@ -12,17 +12,16 @@ namespace Programming.Model
     /// </summary>
     internal class Contact
     {
-        private string _number;
         private string _name;
         private string _sureName;
 
+        private string _number;
         /// <summary>
-        /// Возвращает и задаёт гомер телефона
+        /// Возвращает и задаёт номер телефона
         /// </summary>
         public string Number
         {
-            get { return _number; }
-            set { _number = value; }
+            get; set;
         }
 
         /// <summary>

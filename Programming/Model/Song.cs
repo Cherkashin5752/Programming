@@ -19,20 +19,12 @@ namespace Programming.Model
         /// <summary>
         /// Возвращает и задаёт название музыки
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт автора музыки
         /// </summary>
-        public string Author
-        {
-            get { return _author; }
-            set { _author = value; }
-        }
+        public string Author { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт продолжительность музыки. Только положительное число

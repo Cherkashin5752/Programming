@@ -20,20 +20,12 @@ namespace Programming.Model
         /// <summary>
         /// Возвращает и задаёт название фильма
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт жанр фильма
         /// </summary>
-        public string Genre
-        {
-            get { return _genre; }
-            set { _genre = value; }
-        }
+        public string Genre { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт продожительность фильма. Только положительное число

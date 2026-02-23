@@ -21,11 +21,7 @@ namespace Programming.Model.Geometry
         /// <summary>
         /// Возвращает и задаёт цвет прямоугольника
         /// </summary>
-        public string Color
-        {
-            get { return _color; }
-            set { _color = value; }
-        }
+        public string Color { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт длину прямоугольника. Только положительное число
@@ -56,10 +52,7 @@ namespace Programming.Model.Geometry
         /// <summary>
         /// Возвращает номер прямоугольника
         /// </summary>
-        public int AllRectanglesCount
-        {
-            get { return _allRectanglesCount; }
-        }
+        public int AllRectanglesCount { get; }
 
         /// <summary>
         /// Возвращает уникальный идендификатор прямоугольника
@@ -75,7 +68,7 @@ namespace Programming.Model.Geometry
         public int X
         {
             get { return _center.X; }
-            set => _center = new Point2D(value, _center.Y);
+            set { _center = new Point2D(value, _center.Y); }
         }
 
         /// <summary>
@@ -83,8 +76,8 @@ namespace Programming.Model.Geometry
         /// </summary>
         public int Y
         {
-            get => _center.Y;
-            set => _center = new Point2D(_center.X, value);
+            get { return _center.Y; }
+            set { _center = new Point2D(_center.X, value); }
         }
 
         public Rectangle(int length, int width, string color, int centerX, int centerY)

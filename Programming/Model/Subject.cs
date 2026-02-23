@@ -18,20 +18,12 @@ namespace Programming.Model
         /// <summary>
         /// Возвращает и задаёт название предмета
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт имя преподавателя предмета
         /// </summary>
-        public string TeacherName
-        {
-            get { return _teacherName; }
-            set { _teacherName = value; }
-        }
+        public string TeacherName { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт количество часов в семестре этого предмета. Только положительно число

@@ -18,20 +18,12 @@ namespace Programming.Model
         /// <summary>
         /// Возвращает и задаёт пункт вылета
         /// </summary>
-        public string Departure
-        {
-            get { return _departure; }
-            set { _departure = value; }
-        }
+        public string Departure { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт пункт назначения
         /// </summary>
-        public string Destination
-        {
-            get { return _destination; }
-            set { _destination = value; }
-        }
+        public string Destination { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт время рейса. Только положительно число
