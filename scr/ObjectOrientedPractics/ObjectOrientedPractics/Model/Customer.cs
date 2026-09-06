@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -32,7 +33,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает Id товара
         /// </summary>
-        public int ID { get { return _id; } init { } }
+        public int ID { get { return _id; } init { _id = value; } }
 
         /// <summary>
         /// Возвращает и задаёт полное имя покупателя
@@ -67,7 +68,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        Customer(string fullname, string address)
+        public Customer(string fullname, string address)
         {
             this.ID = _idCounter++;
             this.Fullname = fullname;

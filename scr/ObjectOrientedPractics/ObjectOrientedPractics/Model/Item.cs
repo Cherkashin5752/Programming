@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Policy;
 using System.Text;
 
 namespace ObjectOrientedPractics.Model
@@ -13,8 +15,8 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Счётчик для генерации уникальных Id
         /// </summary>
-        
         static private int _idCounter;
+        
         /// <summary>
         /// Id товара
         /// </summary>
@@ -38,7 +40,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает Id товара
         /// </summary>
-        public int ID { get { return _id; } init { } }
+        public int ID {  get { return _id; } init { _id = value; } }
         
         /// <summary>
         /// Возвращает и задаёт именование товара
@@ -73,7 +75,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public double Cost { get { return _cost; }
             set {
-                if (value > 0 || value < 100_000) {
+                if (value >= 0 && value <= 100000) {
                     _cost = value;
                 }
                 else {
@@ -82,7 +84,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
     
-        Item(string name, string info, int cost) {
+        public Item(string name, string info, int cost) {
             this.ID = _idCounter++;
             this.Name = name;
             this.Info = info;

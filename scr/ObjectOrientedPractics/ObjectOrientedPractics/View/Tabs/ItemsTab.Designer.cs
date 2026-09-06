@@ -67,6 +67,7 @@
             RemoveItemButton.TabIndex = 2;
             RemoveItemButton.Text = "Remove";
             RemoveItemButton.UseVisualStyleBackColor = true;
+            RemoveItemButton.Click += RemoveItemButton_Click;
             // 
             // AddItemButton
             // 
@@ -77,6 +78,7 @@
             AddItemButton.TabIndex = 1;
             AddItemButton.Text = "Add";
             AddItemButton.UseVisualStyleBackColor = true;
+            AddItemButton.Click += AddItemButton_Click;
             // 
             // ItemsListBox
             // 
@@ -86,6 +88,7 @@
             ItemsListBox.Name = "ItemsListBox";
             ItemsListBox.Size = new Size(237, 439);
             ItemsListBox.TabIndex = 0;
+            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
             // SelectedItemGroupBox
             // 
@@ -98,7 +101,7 @@
             SelectedItemGroupBox.Controls.Add(IDTextBox);
             SelectedItemGroupBox.Controls.Add(CostLabel);
             SelectedItemGroupBox.Controls.Add(IDLabel);
-            SelectedItemGroupBox.Location = new Point(258, 6);
+            SelectedItemGroupBox.Location = new Point(258, 3);
             SelectedItemGroupBox.Name = "SelectedItemGroupBox";
             SelectedItemGroupBox.Size = new Size(570, 522);
             SelectedItemGroupBox.TabIndex = 1;
@@ -122,21 +125,23 @@
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.Size = new Size(558, 190);
             DescriptionTextBox.TabIndex = 6;
-            DescriptionTextBox.TextChanged += textBox2_TextChanged;
+            DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
             // 
             // NameTextBox
             // 
             NameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            NameTextBox.Location = new Point(6, 123);
+            NameTextBox.Location = new Point(6, 115);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(558, 108);
+            NameTextBox.Size = new Size(558, 116);
             NameTextBox.TabIndex = 5;
+            NameTextBox.TextChanged += NameTextBox_TextChanged;
+            NameTextBox.Leave += NameTextBox_Leave;
             // 
             // NameLabel
             // 
             NameLabel.AutoSize = true;
-            NameLabel.Location = new Point(6, 105);
+            NameLabel.Location = new Point(6, 97);
             NameLabel.Name = "NameLabel";
             NameLabel.Size = new Size(42, 15);
             NameLabel.TabIndex = 4;
@@ -144,15 +149,17 @@
             // 
             // CostTextBox
             // 
-            CostTextBox.Location = new Point(50, 60);
+            CostTextBox.Location = new Point(76, 60);
             CostTextBox.Name = "CostTextBox";
             CostTextBox.Size = new Size(145, 23);
             CostTextBox.TabIndex = 3;
+            CostTextBox.TextChanged += CostTextBox_TextChanged;
             // 
             // IDTextBox
             // 
-            IDTextBox.Location = new Point(50, 26);
+            IDTextBox.Location = new Point(76, 29);
             IDTextBox.Name = "IDTextBox";
+            IDTextBox.ReadOnly = true;
             IDTextBox.Size = new Size(145, 23);
             IDTextBox.TabIndex = 2;
             // 

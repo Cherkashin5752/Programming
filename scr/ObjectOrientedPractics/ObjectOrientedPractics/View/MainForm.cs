@@ -1,3 +1,5 @@
+using ObjectOrientedPractics.Model;
+
 namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
@@ -5,6 +7,11 @@ namespace ObjectOrientedPractics
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void itemsTab1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

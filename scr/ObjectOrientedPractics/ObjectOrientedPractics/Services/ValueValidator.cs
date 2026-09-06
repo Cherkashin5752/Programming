@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Services
 {
     internal class ValueValidator
     {
@@ -16,7 +16,7 @@ namespace ObjectOrientedPractics.Model
         /// <exception cref="ArgumentException">Ошибка, если строка длинее maxLength</exception>
         static public bool AssertStringOnLength(string value, int maxLength, string propertyName)
         {
-            if (value.Length < maxLength)
+            if (value.Length <= maxLength)
             {
                 return true;
             }
