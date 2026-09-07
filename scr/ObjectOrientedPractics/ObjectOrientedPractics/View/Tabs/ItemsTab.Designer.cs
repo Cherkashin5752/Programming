@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             ItemsGroupBox = new GroupBox();
+            AddRandomItemButton = new Button();
             RemoveItemButton = new Button();
-            AddItemButton = new Button();
+            AddDefaultItemButton = new Button();
             ItemsListBox = new ListBox();
             SelectedItemGroupBox = new GroupBox();
             DescriptionLabel = new Label();
@@ -48,8 +49,9 @@
             // ItemsGroupBox
             // 
             ItemsGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ItemsGroupBox.Controls.Add(AddRandomItemButton);
             ItemsGroupBox.Controls.Add(RemoveItemButton);
-            ItemsGroupBox.Controls.Add(AddItemButton);
+            ItemsGroupBox.Controls.Add(AddDefaultItemButton);
             ItemsGroupBox.Controls.Add(ItemsListBox);
             ItemsGroupBox.Location = new Point(3, 3);
             ItemsGroupBox.Name = "ItemsGroupBox";
@@ -57,6 +59,16 @@
             ItemsGroupBox.TabIndex = 0;
             ItemsGroupBox.TabStop = false;
             ItemsGroupBox.Text = "Items";
+            // 
+            // AddRandomItemButton
+            // 
+            AddRandomItemButton.Location = new Point(168, 467);
+            AddRandomItemButton.Name = "AddRandomItemButton";
+            AddRandomItemButton.Size = new Size(75, 49);
+            AddRandomItemButton.TabIndex = 8;
+            AddRandomItemButton.Text = "Add (random)";
+            AddRandomItemButton.UseVisualStyleBackColor = true;
+            AddRandomItemButton.Click += AddRandomItemButton_Click;
             // 
             // RemoveItemButton
             // 
@@ -69,16 +81,16 @@
             RemoveItemButton.UseVisualStyleBackColor = true;
             RemoveItemButton.Click += RemoveItemButton_Click;
             // 
-            // AddItemButton
+            // AddDefaultItemButton
             // 
-            AddItemButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            AddItemButton.Location = new Point(6, 467);
-            AddItemButton.Name = "AddItemButton";
-            AddItemButton.Size = new Size(75, 49);
-            AddItemButton.TabIndex = 1;
-            AddItemButton.Text = "Add";
-            AddItemButton.UseVisualStyleBackColor = true;
-            AddItemButton.Click += AddItemButton_Click;
+            AddDefaultItemButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            AddDefaultItemButton.Location = new Point(6, 467);
+            AddDefaultItemButton.Name = "AddDefaultItemButton";
+            AddDefaultItemButton.Size = new Size(75, 49);
+            AddDefaultItemButton.TabIndex = 1;
+            AddDefaultItemButton.Text = "Add (default)";
+            AddDefaultItemButton.UseVisualStyleBackColor = true;
+            AddDefaultItemButton.Click += AddDefaultItemButton_Click;
             // 
             // ItemsListBox
             // 
@@ -199,7 +211,7 @@
 
         private GroupBox ItemsGroupBox;
         private Button RemoveItemButton;
-        private Button AddItemButton;
+        private Button AddDefaultItemButton;
         private ListBox ItemsListBox;
         private GroupBox SelectedItemGroupBox;
         private TextBox CostTextBox;
@@ -210,5 +222,6 @@
         private Label DescriptionLabel;
         private TextBox DescriptionTextBox;
         private TextBox NameTextBox;
+        private Button AddRandomItemButton;
     }
 }

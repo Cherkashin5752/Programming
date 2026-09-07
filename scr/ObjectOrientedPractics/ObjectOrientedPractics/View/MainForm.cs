@@ -1,4 +1,5 @@
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.View.Tabs;
 
 namespace ObjectOrientedPractics
 {
@@ -9,9 +10,10 @@ namespace ObjectOrientedPractics
             InitializeComponent();
         }
 
-        private void itemsTab1_Load(object sender, EventArgs e)
+        private void MainForm_ormClosing(object sender, FormClosingEventArgs e)
         {
-
+            itemsTab1.SerializeItems();
+            customersTab1.SerializeCustomers();
         }
     }
 }

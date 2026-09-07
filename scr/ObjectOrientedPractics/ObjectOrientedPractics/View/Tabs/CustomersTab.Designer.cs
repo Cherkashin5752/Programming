@@ -30,7 +30,7 @@
         {
             CustomersGroupBox = new GroupBox();
             RemoveCustomerButton = new Button();
-            AddCutomerButton = new Button();
+            AdddefaultCutomerButton = new Button();
             CustomersListBox = new ListBox();
             RemoveItemButton = new Button();
             AddItemButton = new Button();
@@ -42,6 +42,7 @@
             FullnameLabel = new Label();
             IDLabel = new Label();
             Panel = new Panel();
+            AddRandomCustomerButton = new Button();
             CustomersGroupBox.SuspendLayout();
             SelectedCustomerGroupBox.SuspendLayout();
             SuspendLayout();
@@ -49,8 +50,9 @@
             // CustomersGroupBox
             // 
             CustomersGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            CustomersGroupBox.Controls.Add(AddRandomCustomerButton);
             CustomersGroupBox.Controls.Add(RemoveCustomerButton);
-            CustomersGroupBox.Controls.Add(AddCutomerButton);
+            CustomersGroupBox.Controls.Add(AdddefaultCutomerButton);
             CustomersGroupBox.Controls.Add(CustomersListBox);
             CustomersGroupBox.Controls.Add(RemoveItemButton);
             CustomersGroupBox.Controls.Add(AddItemButton);
@@ -72,16 +74,16 @@
             RemoveCustomerButton.UseVisualStyleBackColor = true;
             RemoveCustomerButton.Click += RemoveCustomerButton_Click;
             // 
-            // AddCutomerButton
+            // AdddefaultCutomerButton
             // 
-            AddCutomerButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            AddCutomerButton.Location = new Point(6, 467);
-            AddCutomerButton.Name = "AddCutomerButton";
-            AddCutomerButton.Size = new Size(75, 49);
-            AddCutomerButton.TabIndex = 0;
-            AddCutomerButton.Text = "Add";
-            AddCutomerButton.UseVisualStyleBackColor = true;
-            AddCutomerButton.Click += AddCutomerButton_Click;
+            AdddefaultCutomerButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            AdddefaultCutomerButton.Location = new Point(6, 467);
+            AdddefaultCutomerButton.Name = "AdddefaultCutomerButton";
+            AdddefaultCutomerButton.Size = new Size(75, 49);
+            AdddefaultCutomerButton.TabIndex = 0;
+            AdddefaultCutomerButton.Text = "Add (default)";
+            AdddefaultCutomerButton.UseVisualStyleBackColor = true;
+            AdddefaultCutomerButton.Click += AddCutomerButton_Click;
             // 
             // CustomersListBox
             // 
@@ -191,6 +193,16 @@
             Panel.Size = new Size(570, 299);
             Panel.TabIndex = 3;
             // 
+            // AddRandomCustomerButton
+            // 
+            AddRandomCustomerButton.Location = new Point(168, 467);
+            AddRandomCustomerButton.Name = "AddRandomCustomerButton";
+            AddRandomCustomerButton.Size = new Size(75, 49);
+            AddRandomCustomerButton.TabIndex = 0;
+            AddRandomCustomerButton.Text = "Add (random)";
+            AddRandomCustomerButton.UseVisualStyleBackColor = true;
+            AddRandomCustomerButton.Click += AddRandomCustomerButton_Click;
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -214,7 +226,7 @@
         private GroupBox SelectedCustomerGroupBox;
         private ListBox CustomersListBox;
         private Button RemoveCustomerButton;
-        private Button AddCutomerButton;
+        private Button AdddefaultCutomerButton;
         private Label IDLabel;
         private Label FullnameLabel;
         private Label label1;
@@ -222,5 +234,6 @@
         private TextBox AddressTextBox;
         private TextBox FullnameTextBox;
         private Panel Panel;
+        private Button AddRandomCustomerButton;
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +17,25 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+
             ItemsListBox.DataSource = _items;
             ItemsListBox.DisplayMember = "Name";
+
+            ItemFactory.SetUpItemFactory();
+
+            try
+            {
+                BindingList<Model.Item> tempItems = ProjectSerializer.DeserializeJsonItemsFile("C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Items Objects.json");
+                
+                foreach (Model.Item item in tempItems)
+                {
+                    _items.Add(item);
+                }
+            }
+            catch { }
         }
 
-        private void AddItemButton_Click(object sender, EventArgs e)
+        private void AddDefaultItemButton_Click(object sender, EventArgs e)
         {
             Model.Item newItem = new Model.Item("Default name", "Default description", 0);
             _items.Add(newItem);
@@ -37,6 +53,12 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 ClearItemsInfo();
             }
+        }
+
+        private void AddRandomItemButton_Click(object sender, EventArgs e)
+        {
+            Model.Item newItem = ItemFactory.GenerateItem();
+            _items.Add(newItem);
         }
 
         private void CostTextBox_TextChanged(object sender, EventArgs e)
@@ -63,7 +85,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 catch { NameTextBox.BackColor = Color.LightPink; }
             }
         }
-        
+
         private void NameTextBox_Leave(object sender, EventArgs e)
         {
             ItemsListBox.DataSource = null;
@@ -107,9 +129,9 @@ namespace ObjectOrientedPractics.View.Tabs
             DescriptionTextBox.Text = "";
         }
 
-        private void RefreshItemsListBox()
+        public void SerializeItems()
         {
-            ItemsListBox.DataSource = _items;
+            ProjectSerializer.SerializeJsonItemsFile(_items, "C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Items Objects.json");
         }
     }
 }

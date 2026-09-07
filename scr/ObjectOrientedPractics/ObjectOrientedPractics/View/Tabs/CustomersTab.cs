@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +10,6 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-
     public partial class CustomersTab : UserControl
     {
         private BindingList<Model.Customer> _customers = new();
@@ -16,8 +17,22 @@ namespace ObjectOrientedPractics.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
+
             CustomersListBox.DataSource = _customers;
             CustomersListBox.DisplayMember = "Fullname";
+
+            CustomerFactory.SetUpCustomerFactory();
+
+            try
+            {
+                BindingList<Model.Customer> tempCustomers = ProjectSerializer.DeserializeJsonCustomerFile("C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Customers Objects.json");
+
+                foreach (Model.Customer customer in tempCustomers)
+                {
+                    _customers.Add(customer);
+                }
+            }
+            catch { }
         }
 
         private void AddCutomerButton_Click(object sender, EventArgs e)
@@ -26,6 +41,12 @@ namespace ObjectOrientedPractics.View.Tabs
             _customers.Add(newCustomer);
         }
 
+        private void AddRandomCustomerButton_Click(object sender, EventArgs e)
+        {
+            Model.Customer newCustomer = CustomerFactory.GenerateCustomer();
+            _customers.Add(newCustomer);
+        }
+        
         private void RemoveCustomerButton_Click(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex != -1)
@@ -94,5 +115,9 @@ namespace ObjectOrientedPractics.View.Tabs
             AddressTextBox.Text = "";
         }
 
+        public void SerializeCustomers()
+        {
+            ProjectSerializer.SerializeJsonCustomersFile(_customers, "C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Customers Objects.json");
+        }
     }
 }

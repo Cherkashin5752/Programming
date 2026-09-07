@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ObjectOrientedPractics.Services
 {
-    internal class ValueValidator
+    static internal class ValueValidator
     {
         /// <summary>
         /// Проверяет на то, не больше ли строка некторого количества символов

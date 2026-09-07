@@ -60,12 +60,11 @@
             Items.Text = "Items";
             Items.UseVisualStyleBackColor = true;
             // 
-            // itemsTab1
+            // itemsTab2
             // 
-            itemsTab1.Dock = DockStyle.Fill;
-            itemsTab1.Location = new Point(3, 3);
-            itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(832, 528);
+            itemsTab1.Location = new Point(4, 3);
+            itemsTab1.Name = "itemsTab2";
+            itemsTab1.Size = new Size(831, 528);
             itemsTab1.TabIndex = 0;
             // 
             // Customers
@@ -79,12 +78,11 @@
             Customers.Text = "Customers";
             Customers.UseVisualStyleBackColor = true;
             // 
-            // customersTab1
+            // customersTab3
             // 
-            customersTab1.Dock = DockStyle.Fill;
-            customersTab1.Location = new Point(3, 3);
-            customersTab1.Name = "customersTab1";
-            customersTab1.Size = new Size(832, 528);
+            customersTab1.Location = new Point(4, 3);
+            customersTab1.Name = "customersTab3";
+            customersTab1.Size = new Size(831, 528);
             customersTab1.TabIndex = 0;
             // 
             // MainForm
@@ -95,6 +93,7 @@
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Object Oriented Practics";
+            FormClosing += MainForm_ormClosing;
             tabControl1.ResumeLayout(false);
             Items.ResumeLayout(false);
             Customers.ResumeLayout(false);

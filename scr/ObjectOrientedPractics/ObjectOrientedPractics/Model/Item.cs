@@ -84,7 +84,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
     
-        public Item(string name, string info, int cost) {
+        public Item(string name, string info, double cost) {
             this.ID = _idCounter++;
             this.Name = name;
             this.Info = info;
