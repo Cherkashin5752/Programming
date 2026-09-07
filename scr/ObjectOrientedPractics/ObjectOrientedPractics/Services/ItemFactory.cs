@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics.Services
 
         static public void SetUpItemFactory()
         {
-            StreamReader reader = new StreamReader("C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Items Names.txt");
+            StreamReader reader = new StreamReader(PathService.GetProjectRootDir() + "\\Items Names.txt");
 
             string? line;
 
@@ -43,7 +43,7 @@ namespace ObjectOrientedPractics.Services
 
             reader.Close();
 
-            reader = new StreamReader("C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Items Info.txt");
+            reader = new StreamReader(PathService.GetProjectRootDir() + "\\Items Info.txt");
 
             while ((line = reader.ReadLine()) != null)
             {

@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics.Services
 
         static public void SetUpCustomerFactory()
         {
-            StreamReader reader = new StreamReader("C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Customers Fullnames.txt");
+            StreamReader reader = new StreamReader(PathService.GetProjectRootDir() + "\\Customers Fullnames.txt");
 
             string? line;
 
@@ -40,7 +40,7 @@ namespace ObjectOrientedPractics.Services
 
             reader.Close();
 
-            reader = new StreamReader("C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Customers Addresses.txt");
+            reader = new StreamReader(PathService.GetProjectRootDir() + "\\Customers Addresses.txt");
 
             while ((line = reader.ReadLine()) != null)
             {

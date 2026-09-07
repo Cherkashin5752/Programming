@@ -25,7 +25,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             try
             {
-                BindingList<Model.Item> tempItems = ProjectSerializer.DeserializeJsonItemsFile("C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Items Objects.json");
+                BindingList<Model.Item> tempItems = ProjectSerializer.DeserializeJsonItemsFile(PathService.GetProjectRootDir() + "\\Items Objects.json");
                 
                 foreach (Model.Item item in tempItems)
                 {
@@ -131,7 +131,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void SerializeItems()
         {
-            ProjectSerializer.SerializeJsonItemsFile(_items, "C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Items Objects.json");
+            ProjectSerializer.SerializeJsonItemsFile(_items, PathService.GetProjectRootDir() + "\\Items Objects.json");
         }
     }
 }

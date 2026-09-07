@@ -1,0 +1,1 @@
+﻿Console.WriteLine(System.Reflection.Assembly.GetEntryAssembly().Location);
