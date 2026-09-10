@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
 
@@ -21,12 +22,21 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.DataSource = _items;
             ItemsListBox.DisplayMember = "Name";
 
-            ItemFactory.SetUpItemFactory();
+            string exeFilePath = PathService.GetProjectRootDir();
 
             try
             {
-                BindingList<Model.Item> tempItems = ProjectSerializer.DeserializeJsonItemsFile(PathService.GetProjectRootDir() + "\\Items Objects.json");
-                
+                ItemFactory.SetUpItemFactory(exeFilePath);
+      
+                string jsonPath = PathService.GetProjectRootDir() + "\\Items Objects.json";
+
+                BindingList<Model.Item> tempItems = ProjectSerializer.DeserializeJsonItemsFile(jsonPath);
+
+                if (tempItems == null)
+                {
+                    return;
+                }
+
                 foreach (Model.Item item in tempItems)
                 {
                     _items.Add(item);
@@ -67,7 +77,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 try
                 {
-                    _items[ItemsListBox.SelectedIndex].Cost = int.Parse(CostTextBox.Text);
+                    _items[ItemsListBox.SelectedIndex].Cost = double.Parse(CostTextBox.Text);
                     CostTextBox.BackColor = Color.White;
                 }
                 catch { CostTextBox.BackColor = Color.LightPink; }

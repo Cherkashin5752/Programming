@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-
-namespace ObjectOrientedPractics.Services
+﻿namespace ObjectOrientedPractics.Services
 {
     internal class ItemFactory
     {
@@ -30,9 +25,9 @@ namespace ObjectOrientedPractics.Services
             return newItem;
         }
 
-        static public void SetUpItemFactory()
+        static public void SetUpItemFactory(string exeFilePath)
         {
-            StreamReader reader = new StreamReader(PathService.GetProjectRootDir() + "\\Items Names.txt");
+            StreamReader reader = new StreamReader(exeFilePath + "\\Items Names.txt");
 
             string? line;
 
@@ -43,7 +38,7 @@ namespace ObjectOrientedPractics.Services
 
             reader.Close();
 
-            reader = new StreamReader(PathService.GetProjectRootDir() + "\\Items Info.txt");
+            reader = new StreamReader(exeFilePath + "\\Items Info.txt");
 
             while ((line = reader.ReadLine()) != null)
             {

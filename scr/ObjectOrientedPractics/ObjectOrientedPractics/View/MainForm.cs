@@ -1,4 +1,5 @@
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.View.Tabs;
 
 namespace ObjectOrientedPractics
@@ -10,7 +11,7 @@ namespace ObjectOrientedPractics
             InitializeComponent();
         }
 
-        private void MainForm_ormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             itemsTab1.SerializeItems();
             customersTab1.SerializeCustomers();

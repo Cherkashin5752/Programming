@@ -21,11 +21,20 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.DataSource = _customers;
             CustomersListBox.DisplayMember = "Fullname";
 
-            CustomerFactory.SetUpCustomerFactory();
+            string exeFilePath = PathService.GetProjectRootDir();
 
             try
             {
-                BindingList<Model.Customer> tempCustomers = ProjectSerializer.DeserializeJsonCustomerFile(PathService.GetProjectRootDir() + "\\Customers Objects.json");
+                CustomerFactory.SetUpCustomerFactory();
+
+                string jsonPath = PathService.GetProjectRootDir() + "\\Customers Objects.json";
+
+                BindingList<Model.Customer> tempCustomers = ProjectSerializer.DeserializeJsonCustomerFile(jsonPath);
+
+                if (tempCustomers == null)
+                {
+                    return;
+                }
 
                 foreach (Model.Customer customer in tempCustomers)
                 {

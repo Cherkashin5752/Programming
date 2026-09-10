@@ -75,7 +75,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public double Cost { get { return _cost; }
             set {
-                if (value >= 0 && value <= 100000) {
+                if (value >= 0.0 && value <= 100000.0) {
                     _cost = value;
                 }
                 else {

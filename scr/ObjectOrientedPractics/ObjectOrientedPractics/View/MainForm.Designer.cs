@@ -1,4 +1,6 @@
-﻿namespace ObjectOrientedPractics
+﻿using ObjectOrientedPractics.Services;
+
+namespace ObjectOrientedPractics
 {
     partial class MainForm
     {
@@ -30,8 +32,8 @@
         {
             tabControl1 = new TabControl();
             Items = new TabPage();
-            itemsTab1 = new ObjectOrientedPractics.View.Tabs.ItemsTab();
             Customers = new TabPage();
+            itemsTab1 = new ObjectOrientedPractics.View.Tabs.ItemsTab();
             customersTab1 = new ObjectOrientedPractics.View.Tabs.CustomersTab();
             tabControl1.SuspendLayout();
             Items.SuspendLayout();
@@ -60,13 +62,6 @@
             Items.Text = "Items";
             Items.UseVisualStyleBackColor = true;
             // 
-            // itemsTab2
-            // 
-            itemsTab1.Location = new Point(4, 3);
-            itemsTab1.Name = "itemsTab2";
-            itemsTab1.Size = new Size(831, 528);
-            itemsTab1.TabIndex = 0;
-            // 
             // Customers
             // 
             Customers.Controls.Add(customersTab1);
@@ -78,10 +73,17 @@
             Customers.Text = "Customers";
             Customers.UseVisualStyleBackColor = true;
             // 
-            // customersTab3
+            // itemsTab1
             // 
-            customersTab1.Location = new Point(4, 3);
-            customersTab1.Name = "customersTab3";
+            itemsTab1.Location = new Point(3, 3);
+            itemsTab1.Name = "itemsTab1";
+            itemsTab1.Size = new Size(831, 528);
+            itemsTab1.TabIndex = 0;
+            // 
+            // customersTab1
+            // 
+            customersTab1.Location = new Point(3, 3);
+            customersTab1.Name = "customersTab1";
             customersTab1.Size = new Size(831, 528);
             customersTab1.TabIndex = 0;
             // 
@@ -93,7 +95,7 @@
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Object Oriented Practics";
-            FormClosing += MainForm_ormClosing;
+            FormClosing += MainForm_FormClosing;
             tabControl1.ResumeLayout(false);
             Items.ResumeLayout(false);
             Customers.ResumeLayout(false);
@@ -104,8 +106,8 @@
 
         private TabControl tabControl1;
         private TabPage Items;
-        private View.Tabs.ItemsTab itemsTab1;
         private TabPage Customers;
+        private View.Tabs.ItemsTab itemsTab1;
         private View.Tabs.CustomersTab customersTab1;
     }
 }
