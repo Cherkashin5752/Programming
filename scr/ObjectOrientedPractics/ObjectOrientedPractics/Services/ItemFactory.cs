@@ -2,12 +2,25 @@
 {
     internal class ItemFactory
     {
+        /// <summary>
+        /// Максимальное количество товаров, доступных для генерации (определяется наименьшим размером из списка названий и описаний).
+        /// </summary>
         static private int maxItemsCount;
 
+        /// <summary>
+        /// Список названий покупателей, загруженных из файла.
+        /// </summary>
         static private List<string> _names = new List<string>();
 
+        /// <summary>
+        /// Список описаний покупателей, загруженных из файла.
+        /// </summary>
         static private List<string> _info = new List<string>();
 
+        /// <summary>
+        /// Генерирует экземпляр класса <see cref="Model.Item"/> со случайным название и описанием из загруженных данных.
+        /// </summary>
+        /// <returns>Возвращает новый экземпляр класса <see cref="Model.Item"/>.</returns>
         static public Model.Item GenerateItem()
         {
             Random random = new Random();
@@ -25,6 +38,9 @@
             return newItem;
         }
 
+        /// <summary>
+        /// Выполняет первичную настройку фабрики товаров: считает списки названий и описаний из текстовых файлов и рассчитывает <see cref="maxItemsCount">.
+        /// </summary>
         static public void SetUpItemFactory(string exeFilePath)
         {
             StreamReader reader = new StreamReader(exeFilePath + "\\Items Names.txt");

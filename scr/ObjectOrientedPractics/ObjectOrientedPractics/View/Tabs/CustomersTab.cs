@@ -12,8 +12,15 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomersTab : UserControl
     {
+        /// <summary>
+        /// Список покупателей, привязанный к графическому интерфейсу.
+        /// </summary>
         private BindingList<Model.Customer> _customers = new();
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="CustomersTab"/>.
+        /// Загружает сохранённых покупателей из файла JSON и настраивает фабрику генерации покупателей.
+        /// </summary>
         public CustomersTab()
         {
             InitializeComponent();
@@ -44,18 +51,33 @@ namespace ObjectOrientedPractics.View.Tabs
             catch { }
         }
 
-        private void AddCutomerButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик события нажатия на кнопку добавления покупателя по умолчанию.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void AddDefaultCutomerButton_Click(object sender, EventArgs e)
         {
             Model.Customer newCustomer = new Model.Customer("Default name", "Default address");
             _customers.Add(newCustomer);
         }
 
+        /// <summary>
+        /// Обработчик события нажатия на кнопку добавления случайного покупателя.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void AddRandomCustomerButton_Click(object sender, EventArgs e)
         {
             Model.Customer newCustomer = CustomerFactory.GenerateCustomer();
             _customers.Add(newCustomer);
         }
         
+        /// <summary>
+        /// Обработчик события нажатия на кнопку удаления выбранного покупателя.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргумент события.</param>
         private void RemoveCustomerButton_Click(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex != -1)
@@ -70,6 +92,12 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик события изменения текста в поле полного имени покупателя.
+        /// Валидирует ввод и подсвечивает поле при ошибке.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Пргументы события.</param>
         private void FullnameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex != -1)
@@ -83,6 +111,12 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик события потери фокуса поля полного имени покупателя.
+        /// Обновления отображаемого имени покупателя в <see cref="CustomersListBox"/>
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Пргументы события.</param>
         private void FullnameTextBox_Leave(object sender, EventArgs e)
         {
             CustomersListBox.DataSource = null;
@@ -90,6 +124,12 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.DisplayMember = "Fullname";
         }
 
+        /// <summary>
+        /// Обработчик события изменения текста в поле адреса покупателя.
+        /// Валидирует ввод и подсвечивает поле при ошибке.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Пргументы события.</param>
         private void AddressTextBox_TextChanged(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex != -1)
@@ -103,6 +143,12 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик события изменения выбранного элемента в списке покупателей.
+        /// Заполняет текстовые поля информацией о выбранном покупателе.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Пргументы события.</param>
         private void CustomerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex != -1)
@@ -117,6 +163,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Очищает текстовые поля формы от данных покупателя.
+        /// </summary>
         private void ClearItemsInfo()
         {
             IDTextBox.Text = "";
@@ -124,6 +173,10 @@ namespace ObjectOrientedPractics.View.Tabs
             AddressTextBox.Text = "";
         }
 
+        /// <summary>
+        /// Выполняет сериализацию текущего списка покупателей в файл формата JSON.
+        /// Вызывается в главной форме.
+        /// </summary>
         public void SerializeCustomers()
         {
             ProjectSerializer.SerializeJsonCustomersFile(_customers, PathService.GetProjectRootDir() + "\\Customers Objects.json");

@@ -32,8 +32,8 @@ namespace ObjectOrientedPractics
         {
             tabControl1 = new TabControl();
             Items = new TabPage();
-            Customers = new TabPage();
             itemsTab1 = new ObjectOrientedPractics.View.Tabs.ItemsTab();
+            Customers = new TabPage();
             customersTab1 = new ObjectOrientedPractics.View.Tabs.CustomersTab();
             tabControl1.SuspendLayout();
             Items.SuspendLayout();
@@ -62,6 +62,14 @@ namespace ObjectOrientedPractics
             Items.Text = "Items";
             Items.UseVisualStyleBackColor = true;
             // 
+            // itemsTab1
+            // 
+            itemsTab1.Dock = DockStyle.Fill;
+            itemsTab1.Location = new Point(3, 3);
+            itemsTab1.Name = "itemsTab1";
+            itemsTab1.Size = new Size(832, 528);
+            itemsTab1.TabIndex = 0;
+            // 
             // Customers
             // 
             Customers.Controls.Add(customersTab1);
@@ -73,18 +81,12 @@ namespace ObjectOrientedPractics
             Customers.Text = "Customers";
             Customers.UseVisualStyleBackColor = true;
             // 
-            // itemsTab1
-            // 
-            itemsTab1.Location = new Point(3, 3);
-            itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(831, 528);
-            itemsTab1.TabIndex = 0;
-            // 
             // customersTab1
             // 
+            customersTab1.Dock = DockStyle.Fill;
             customersTab1.Location = new Point(3, 3);
             customersTab1.Name = "customersTab1";
-            customersTab1.Size = new Size(831, 528);
+            customersTab1.Size = new Size(832, 528);
             customersTab1.TabIndex = 0;
             // 
             // MainForm

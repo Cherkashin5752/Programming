@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             CustomersGroupBox = new GroupBox();
+            AddRandomCustomerButton = new Button();
             RemoveCustomerButton = new Button();
             AdddefaultCutomerButton = new Button();
             CustomersListBox = new ListBox();
@@ -42,7 +43,6 @@
             FullnameLabel = new Label();
             IDLabel = new Label();
             Panel = new Panel();
-            AddRandomCustomerButton = new Button();
             CustomersGroupBox.SuspendLayout();
             SelectedCustomerGroupBox.SuspendLayout();
             SuspendLayout();
@@ -62,6 +62,17 @@
             CustomersGroupBox.TabIndex = 1;
             CustomersGroupBox.TabStop = false;
             CustomersGroupBox.Text = "Customers";
+            // 
+            // AddRandomCustomerButton
+            // 
+            AddRandomCustomerButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            AddRandomCustomerButton.Location = new Point(168, 467);
+            AddRandomCustomerButton.Name = "AddRandomCustomerButton";
+            AddRandomCustomerButton.Size = new Size(75, 49);
+            AddRandomCustomerButton.TabIndex = 0;
+            AddRandomCustomerButton.Text = "Add (random)";
+            AddRandomCustomerButton.UseVisualStyleBackColor = true;
+            AddRandomCustomerButton.Click += AddRandomCustomerButton_Click;
             // 
             // RemoveCustomerButton
             // 
@@ -83,7 +94,7 @@
             AdddefaultCutomerButton.TabIndex = 0;
             AdddefaultCutomerButton.Text = "Add (default)";
             AdddefaultCutomerButton.UseVisualStyleBackColor = true;
-            AdddefaultCutomerButton.Click += AddCutomerButton_Click;
+            AdddefaultCutomerButton.Click += AddDefaultCutomerButton_Click;
             // 
             // CustomersListBox
             // 
@@ -192,16 +203,6 @@
             Panel.Name = "Panel";
             Panel.Size = new Size(570, 299);
             Panel.TabIndex = 3;
-            // 
-            // AddRandomCustomerButton
-            // 
-            AddRandomCustomerButton.Location = new Point(168, 467);
-            AddRandomCustomerButton.Name = "AddRandomCustomerButton";
-            AddRandomCustomerButton.Size = new Size(75, 49);
-            AddRandomCustomerButton.TabIndex = 0;
-            AddRandomCustomerButton.Text = "Add (random)";
-            AddRandomCustomerButton.UseVisualStyleBackColor = true;
-            AddRandomCustomerButton.Click += AddRandomCustomerButton_Click;
             // 
             // CustomersTab
             // 

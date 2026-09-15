@@ -62,6 +62,7 @@
             // 
             // AddRandomItemButton
             // 
+            AddRandomItemButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             AddRandomItemButton.Location = new Point(168, 467);
             AddRandomItemButton.Name = "AddRandomItemButton";
             AddRandomItemButton.Size = new Size(75, 49);
