@@ -39,9 +39,9 @@
         /// <summary>
         /// Выполняет первичную настройку фабрики покупателей: считает списки имён и адресов из текстовых файлов и рассчитывает <see cref="maxCustomersCount">.
         /// </summary>
-        static public void SetUpCustomerFactory()
+        static public void SetUpCustomerFactory(string exeCustomersPath)
         {
-            StreamReader reader = new StreamReader("C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Customers Fullnames.txt");
+            StreamReader reader = new StreamReader(exeCustomersPath + "\\Customers Fullnames.txt");
 
             string? line;
 
@@ -52,7 +52,7 @@
 
             reader.Close();
 
-            reader = new StreamReader("C:\\Users\\greft\\source\\repos\\Programming\\scr\\ObjectOrientedPractics\\ObjectOrientedPractics\\bin\\Debug\\net10.0-windows\\Customers Addresses.txt");
+            reader = new StreamReader(exeCustomersPath + "\\Customers Addresses.txt");
 
             while ((line = reader.ReadLine()) != null)
             {

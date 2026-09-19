@@ -25,5 +25,17 @@ namespace ObjectOrientedPractics.Services
                 throw new ArgumentException($"{propertyName} должен быть меньше {maxLength} символов");
             }
         }
+
+        static public bool ValueIsPositive(int value, string propetryName)
+        {
+            if (value > 0)
+            {
+                return true;
+            }
+            else
+            {
+                throw new ArgumentException($"{propetryName} должен быть положительным");
+            }
+        }
     }
 }

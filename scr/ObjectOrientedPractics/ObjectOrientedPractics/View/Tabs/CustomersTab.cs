@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             try
             {
-                CustomerFactory.SetUpCustomerFactory();
+                CustomerFactory.SetUpCustomerFactory(exeFilePath);
 
                 string jsonPath = PathService.GetProjectRootDir() + "\\Customers Objects.json";
 
@@ -56,7 +56,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Аргументы события.</param>
-        private void AddDefaultCutomerButton_Click(object sender, EventArgs e)
+        private void AddDefaultCustomerButton_Click(object sender, EventArgs e)
         {
             Model.Customer newCustomer = new Model.Customer("Default name", "Default address");
             _customers.Add(newCustomer);
@@ -88,7 +88,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 CustomersListBox.SelectedIndex = -1;
 
-                ClearItemsInfo();
+                ClearCustomersInfo();
             }
         }
 
@@ -159,14 +159,14 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             else
             {
-                ClearItemsInfo();
+                ClearCustomersInfo();
             }
         }
 
         /// <summary>
         /// Очищает текстовые поля формы от данных покупателя.
         /// </summary>
-        private void ClearItemsInfo()
+        private void ClearCustomersInfo()
         {
             IDTextBox.Text = "";
             FullnameTextBox.Text = "";

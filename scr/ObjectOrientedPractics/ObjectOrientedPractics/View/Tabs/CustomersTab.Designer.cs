@@ -94,7 +94,7 @@
             AdddefaultCutomerButton.TabIndex = 0;
             AdddefaultCutomerButton.Text = "Add (default)";
             AdddefaultCutomerButton.UseVisualStyleBackColor = true;
-            AdddefaultCutomerButton.Click += AddDefaultCutomerButton_Click;
+            AdddefaultCutomerButton.Click += AddDefaultCustomerButton_Click;
             // 
             // CustomersListBox
             // 

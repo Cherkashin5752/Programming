@@ -18,7 +18,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Id товара
         /// </summary>
-        readonly int _id;
+        private readonly int _id;
         
         /// <summary>
         /// Полное имя покупателя
