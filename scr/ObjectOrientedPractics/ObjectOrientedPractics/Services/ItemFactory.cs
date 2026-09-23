@@ -1,4 +1,6 @@
-﻿namespace ObjectOrientedPractics.Services
+﻿using ObjectOrientedPractics.Model.Enums;
+
+namespace ObjectOrientedPractics.Services
 {
     internal class ItemFactory
     {
@@ -33,7 +35,9 @@
 
             int newCost = random.Next(0, 100000);
 
-            Model.Item newItem = new Model.Item(newName, newInfo, newCost);
+            ProductCategory newCategory = (ProductCategory)random.Next(1, 8);
+
+            Model.Item newItem = new Model.Item(newName, newInfo, newCost, newCategory);
 
             return newItem;
         }

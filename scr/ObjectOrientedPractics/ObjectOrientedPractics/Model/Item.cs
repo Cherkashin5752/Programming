@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -83,12 +84,25 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
+
+        /// <summary>
+        /// Возвращает и задаёт категорию товара
+        /// </summary>
+        public ProductCategory Category { get; set; }
     
-        public Item(string name, string info, double cost) {
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Item">
+        /// </summary>
+        /// <param name="name">Название товара</param>
+        /// <param name="info">Информация о товаре</param>
+        /// <param name="cost">Стоимость товара</param>
+        /// <param name="category">Категория товара</param>
+        public Item(string name, string info, double cost, ProductCategory category) {
             this.ID = _idCounter++;
             this.Name = name;
             this.Info = info;
             this.Cost = cost;
+            this.Category = category;
         }
     }
 }

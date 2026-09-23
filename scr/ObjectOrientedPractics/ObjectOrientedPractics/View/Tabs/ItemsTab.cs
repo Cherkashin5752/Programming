@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,14 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.DataSource = _items;
             ItemsListBox.DisplayMember = "Name";
 
+            CategoryComboBox.Items.AddRange(Enum.GetNames<ProductCategory>());
+
             string exeFilePath = PathService.GetProjectRootDir();
 
             try
             {
                 ItemFactory.SetUpItemFactory(exeFilePath);
-      
+
                 string jsonPath = PathService.GetProjectRootDir() + "\\Items Objects.json";
 
                 BindingList<Model.Item> tempItems = ProjectSerializer.DeserializeJsonItemsFile(jsonPath);
@@ -50,6 +53,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
             catch { }
+
         }
 
         /// <summary>
@@ -59,7 +63,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Аргумент события.</param>
         private void AddDefaultItemButton_Click(object sender, EventArgs e)
         {
-            Model.Item newItem = new Model.Item("Default name", "Default description", 0);
+            Model.Item newItem = new Model.Item("Default name", "Default description", 0, ProductCategory.Default);
             _items.Add(newItem);
         }
 
@@ -164,6 +168,19 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Обработчик события изменения выбранного элемента в выпадающем списке категории товара.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргумент события.</param>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedIndex != -1)
+            {
+                _items[ItemsListBox.SelectedIndex].Category = (ProductCategory)CategoryComboBox.SelectedIndex;
+            }
+        }
+
+        /// <summary>
         /// Обработчик события изменения выбраного элемента в списке товаров.
         /// Заполняет текстовые поля информацией о выбранном товаре.
         /// </summary>
@@ -177,6 +194,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 NameTextBox.Text = ((Model.Item)ItemsListBox.SelectedItem).Name;
                 DescriptionTextBox.Text = ((Model.Item)ItemsListBox.SelectedItem).Info;
                 CostTextBox.Text = ((Model.Item)ItemsListBox.SelectedItem).Cost.ToString();
+                CategoryComboBox.SelectedIndex = (int)((Model.Item)ItemsListBox.SelectedItem).Category;
             }
             else
             {
@@ -193,6 +211,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Text = "";
             NameTextBox.Text = "";
             DescriptionTextBox.Text = "";
+            CategoryComboBox.SelectedIndex = -1;
         }
 
         /// <summary>
