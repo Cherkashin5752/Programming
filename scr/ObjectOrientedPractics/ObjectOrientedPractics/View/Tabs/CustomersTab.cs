@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Пользовательский элемент, который осуществляет логику работы с покупателями
+    /// </summary>
     public partial class CustomersTab : UserControl
     {
         /// <summary>
@@ -34,7 +37,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CustomerFactory.SetUpCustomerFactory(exeFilePath);
 
-                string jsonPath = PathService.GetProjectRootDir() + "\\Customers Objects.json";
+                string jsonPath = exeFilePath + "\\Customers Objects.json";
 
                 BindingList<Model.Customer> tempCustomers = ProjectSerializer.DeserializeJsonCustomerFile(jsonPath);
 
@@ -58,7 +61,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void AddDefaultCustomerButton_Click(object sender, EventArgs e)
         {
-            Model.Customer newCustomer = new Model.Customer("Default name", "Default address");
+            Model.Customer newCustomer = new Model.Customer();
             _customers.Add(newCustomer);
         }
 
@@ -125,21 +128,15 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обработчик события изменения текста в поле адреса покупателя.
-        /// Валидирует ввод и подсвечивает поле при ошибке.
+        /// ОБработчик события изменения поля адреса покупателя
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Пргументы события.</param>
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
+        private void addressControl1_OnAddressChanged(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex != -1)
             {
-                try
-                {
-                    _customers[CustomersListBox.SelectedIndex].Address = AddressTextBox.Text;
-                    AddressTextBox.BackColor = Color.White;
-                }
-                catch { AddressTextBox.BackColor = Color.LightPink; }
+                _customers[CustomersListBox.SelectedIndex].Address = addressControl1.CurrentAddress;
             }
         }
 
@@ -155,7 +152,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 IDTextBox.Text = ((Model.Customer)CustomersListBox.SelectedItem).ID.ToString();
                 FullnameTextBox.Text = ((Model.Customer)CustomersListBox.SelectedItem).Fullname;
-                AddressTextBox.Text = ((Model.Customer)CustomersListBox.SelectedItem).Address;
+                addressControl1.CurrentAddress = ((Model.Customer)CustomersListBox.SelectedItem).Address;
             }
             else
             {
@@ -164,13 +161,13 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Очищает текстовые поля формы от данных покупателя.
+        /// Очищает текстовые поля формы о данных покупателя.
         /// </summary>
         private void ClearCustomersInfo()
         {
             IDTextBox.Text = "";
             FullnameTextBox.Text = "";
-            AddressTextBox.Text = "";
+            addressControl1.CurrentAddress = null;
         }
 
         /// <summary>

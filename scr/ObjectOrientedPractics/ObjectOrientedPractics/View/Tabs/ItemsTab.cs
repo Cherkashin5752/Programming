@@ -63,7 +63,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Аргумент события.</param>
         private void AddDefaultItemButton_Click(object sender, EventArgs e)
         {
-            Model.Item newItem = new Model.Item("Default name", "Default description", 0, ProductCategory.Default);
+            Model.Item newItem = new Model.Item();
             _items.Add(newItem);
         }
 

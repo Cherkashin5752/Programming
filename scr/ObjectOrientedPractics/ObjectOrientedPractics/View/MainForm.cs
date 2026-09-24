@@ -6,6 +6,9 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="MainForm"/>.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();

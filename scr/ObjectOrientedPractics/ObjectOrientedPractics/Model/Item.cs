@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Policy;
 using System.Text;
+using System.Xml.Linq;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -90,6 +91,18 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public ProductCategory Category { get; set; }
     
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Item"> с дефолтными значениям
+        /// </summary>
+        public Item()
+        {
+            this.ID = _idCounter++;
+            this.Name = "Default name";
+            this.Info = "Default description";
+            this.Cost = 0;
+            this.Category = ProductCategory.Default;
+        }
+
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Item">
         /// </summary>

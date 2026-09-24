@@ -28,7 +28,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес покупателя
         /// </summary>
-        private string _address;
+        private Address _address;
 
         /// <summary>
         /// Возвращает Id товара
@@ -52,27 +52,26 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задаёт адрес покупателя
         /// </summary>
-        public string Address
+        public Address Address { get { return _address; } set { _address = value; } }
+
+        public Customer()
         {
-            get { return _address; }
-            set
-            {
-                if (ValueValidator.AssertStringOnLength(value, 500, "Address"))
-                {
-                    _address = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"Вышло за границу допустимого значения {value}", nameof(value));
-                }
-            }
+            this.ID = _idCounter++;
+            this.Fullname = "Default fullname";
+            this.Address = new Address();
         }
 
-        public Customer(string fullname, string address)
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Customer">
+        /// </summary>
+        /// <param name="fullname">Полное имя покупателя</param>
+        /// <param name="address">Адрес покупателя</param>
+        public Customer(string fullname, int index, string country, string city,
+            string street, string building, string apartment)
         {
             this.ID = _idCounter++;
             this.Fullname = fullname;
-            this.Address = address;
+            this.Address = new Address(index, country, city, street, building, apartment);
         }
     }
 }

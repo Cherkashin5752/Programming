@@ -1,4 +1,7 @@
-﻿namespace ObjectOrientedPractics.Services
+﻿using Newtonsoft.Json;
+using ObjectOrientedPractics.Model;
+
+namespace ObjectOrientedPractics.Services
 {
     internal class CustomerFactory
     {
@@ -15,7 +18,7 @@
         /// <summary>
         /// Список адрессов покупателей, загруженных из файла.
         /// </summary>
-        static private List<string> _addresses = new List<string>();
+        static private List<Model.Address> _addresses = new List<Model.Address>();
 
         /// <summary>
         /// Генерирует экземпляр класса <see cref="Model.Customer"/> со случайным именем и адресом из загруженных данных.
@@ -27,11 +30,41 @@
 
             int randomCustomer = random.Next(0, maxCustomersCount);
 
-            string newName = _fullnames[randomCustomer];
+            string newFullname;
 
-            string newInfo = _addresses[randomCustomer];
+            if (_fullnames.Count != 0)
+            {
+                newFullname = _fullnames[randomCustomer];
+            }
+            else
+            {
+                newFullname = "Default fullname";
+            }
 
-            Model.Customer newCustomer = new Model.Customer(newName, newInfo);
+            int newIndex;
+            string newCountry, newCity, newStreet, newBuilding, newApartment;
+
+            if (_addresses.Count != 0)
+            {
+                newIndex = _addresses[randomCustomer].Index;
+                newCountry = _addresses[randomCustomer].Country;
+                newCity = _addresses[randomCustomer].City;
+                newStreet = _addresses[randomCustomer].Street;
+                newBuilding = _addresses[randomCustomer].Building;
+                newApartment = _addresses[randomCustomer].Apartment;
+            }
+            else
+            {
+                newIndex = 100000;
+                newCountry = "Default country";
+                newCity = "Default";
+                newStreet = "Default street";
+                newBuilding = "Default";
+                newApartment = "Default";
+            }
+
+            Model.Customer newCustomer = new Model.Customer(newFullname, newIndex, newCountry,
+            newCity, newStreet, newBuilding, newApartment);
 
             return newCustomer;
         }
@@ -41,27 +74,32 @@
         /// </summary>
         static public void SetUpCustomerFactory(string exeCustomersPath)
         {
-            StreamReader reader = new StreamReader(exeCustomersPath + "\\Customers Fullnames.txt");
+            StreamReader reader = new StreamReader(exeCustomersPath + "\\Customers Fullnames.json");
 
-            string? line;
-
-            while ((line = reader.ReadLine()) != null)
+            if (reader != null)
             {
-                _fullnames.Add(line);
+                _fullnames = JsonConvert.DeserializeObject<List<string>>(reader.ReadToEnd());
             }
-
+            
             reader.Close();
 
-            reader = new StreamReader(exeCustomersPath + "\\Customers Addresses.txt");
+            reader = new StreamReader(exeCustomersPath + "\\Customers Addresses.json");
 
-            while ((line = reader.ReadLine()) != null)
+            if (reader != null)
             {
-                _addresses.Add(line);
+                _addresses = JsonConvert.DeserializeObject<List<Model.Address>>(reader.ReadToEnd());
             }
-
+            
             reader.Close();
 
-            maxCustomersCount = int.Min(_fullnames.Count, _addresses.Count);
+            if (_fullnames != null && _addresses != null)
+            {
+                maxCustomersCount = int.Min(_fullnames.Count, _addresses.Count);
+            }
+            else
+            {
+                maxCustomersCount = -1;
+            }
         }
     }
 }
