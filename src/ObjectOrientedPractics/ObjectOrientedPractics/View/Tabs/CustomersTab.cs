@@ -21,6 +21,23 @@ namespace ObjectOrientedPractics.View.Tabs
         private BindingList<Model.Customer> _customers = new();
 
         /// <summary>
+        /// Возвращает и задаёт список покупателей
+        /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public BindingList<Model.Customer> Customers
+        {
+            get
+            {
+                return _customers;
+            }
+            set
+            {
+                _customers = value;
+                RefreshCustomersListBox();
+            }
+        }
+
+        /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="CustomersTab"/>.
         /// Загружает сохранённых покупателей из файла JSON и настраивает фабрику генерации покупателей.
         /// </summary>
@@ -31,25 +48,9 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.DataSource = _customers;
             CustomersListBox.DisplayMember = "Fullname";
 
-            string exeFilePath = PathService.GetProjectRootDir();
-
             try
             {
-                CustomerFactory.SetUpCustomerFactory(exeFilePath);
-
-                string jsonPath = exeFilePath + "\\Customers Objects.json";
-
-                BindingList<Model.Customer> tempCustomers = ProjectSerializer.DeserializeJsonCustomerFile(jsonPath);
-
-                if (tempCustomers == null)
-                {
-                    return;
-                }
-
-                foreach (Model.Customer customer in tempCustomers)
-                {
-                    _customers.Add(customer);
-                }
+                CustomerFactory.SetUpCustomerFactory();
             }
             catch { }
         }
@@ -62,7 +63,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddDefaultCustomerButton_Click(object sender, EventArgs e)
         {
             Model.Customer newCustomer = new Model.Customer();
-            _customers.Add(newCustomer);
+            Customers.Add(newCustomer);
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddRandomCustomerButton_Click(object sender, EventArgs e)
         {
             Model.Customer newCustomer = CustomerFactory.GenerateCustomer();
-            _customers.Add(newCustomer);
+            Customers.Add(newCustomer);
         }
         
         /// <summary>
@@ -87,7 +88,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 int selectedIndex = CustomersListBox.SelectedIndex;
 
-                _customers.RemoveAt(selectedIndex);
+                Customers.RemoveAt(selectedIndex);
 
                 CustomersListBox.SelectedIndex = -1;
 
@@ -107,7 +108,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 try
                 {
-                    _customers[CustomersListBox.SelectedIndex].Fullname = FullnameTextBox.Text;
+                    Customers[CustomersListBox.SelectedIndex].Fullname = FullnameTextBox.Text;
                     FullnameTextBox.BackColor = Color.White;
                 }
                 catch { FullnameTextBox.BackColor = Color.LightPink; }
@@ -122,9 +123,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Пргументы события.</param>
         private void FullnameTextBox_Leave(object sender, EventArgs e)
         {
-            CustomersListBox.DataSource = null;
-            CustomersListBox.DataSource = _customers;
-            CustomersListBox.DisplayMember = "Fullname";
+            RefreshCustomersListBox();
         }
 
         /// <summary>
@@ -136,7 +135,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CustomersListBox.SelectedIndex != -1)
             {
-                _customers[CustomersListBox.SelectedIndex].Address = addressControl1.CurrentAddress;
+                Customers[CustomersListBox.SelectedIndex].Address = addressControl1.CurrentAddress;
             }
         }
 
@@ -171,12 +170,13 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Выполняет сериализацию текущего списка покупателей в файл формата JSON.
-        /// Вызывается в главной форме.
+        /// Обновляет отображение CustomersListBox
         /// </summary>
-        public void SerializeCustomers()
+        private void RefreshCustomersListBox()
         {
-            ProjectSerializer.SerializeJsonCustomersFile(_customers, PathService.GetProjectRootDir() + "\\Customers Objects.json");
+            CustomersListBox.DataSource = null;
+            CustomersListBox.DataSource = _customers;
+            CustomersListBox.DisplayMember = "Fullname";
         }
     }
 }

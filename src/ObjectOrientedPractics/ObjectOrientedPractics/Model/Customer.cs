@@ -8,7 +8,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит Id, полное имя и адрес покупателя
     /// </summary>
-    internal class Customer
+    public class Customer
     {
         /// <summary>
         /// Счётчик для генерации уникальных Id

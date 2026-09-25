@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Model.Enums;
+﻿using Newtonsoft.Json;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.Services
 {
@@ -45,24 +46,22 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Выполняет первичную настройку фабрики товаров: считает списки названий и описаний из текстовых файлов и рассчитывает <see cref="maxItemsCount">.
         /// </summary>
-        static public void SetUpItemFactory(string exeFilePath)
+        static public void SetUpItemFactory()
         {
-            StreamReader reader = new StreamReader(exeFilePath + "\\Items Names.txt");
+            StreamReader reader = new StreamReader(PathService.GetProjectRootDir() + "\\Items Names.json");
 
-            string? line;
-
-            while ((line = reader.ReadLine()) != null)
+            if (reader != null)
             {
-                _names.Add(line);
+                _names = JsonConvert.DeserializeObject<List<string>>(reader.ReadToEnd());
             }
 
             reader.Close();
 
-            reader = new StreamReader(exeFilePath + "\\Items Info.txt");
+            reader = new StreamReader(PathService.GetProjectRootDir() + "\\Items Info.json");
 
-            while ((line = reader.ReadLine()) != null)
+            if (reader != null)
             {
-                _info.Add(line);
+                _info = JsonConvert.DeserializeObject<List<string>>(reader.ReadToEnd());
             }
 
             reader.Close();

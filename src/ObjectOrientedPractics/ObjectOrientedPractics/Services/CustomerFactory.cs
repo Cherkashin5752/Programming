@@ -72,9 +72,9 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Выполняет первичную настройку фабрики покупателей: считает списки имён и адресов из текстовых файлов и рассчитывает <see cref="maxCustomersCount">.
         /// </summary>
-        static public void SetUpCustomerFactory(string exeCustomersPath)
+        static public void SetUpCustomerFactory()
         {
-            StreamReader reader = new StreamReader(exeCustomersPath + "\\Customers Fullnames.json");
+            StreamReader reader = new StreamReader(PathService.GetProjectRootDir() + "\\Customers Fullnames.json");
 
             if (reader != null)
             {
@@ -83,7 +83,7 @@ namespace ObjectOrientedPractics.Services
             
             reader.Close();
 
-            reader = new StreamReader(exeCustomersPath + "\\Customers Addresses.json");
+            reader = new StreamReader(PathService.GetProjectRootDir() + "\\Customers Addresses.json");
 
             if (reader != null)
             {

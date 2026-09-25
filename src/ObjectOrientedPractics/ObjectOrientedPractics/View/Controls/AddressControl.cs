@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.ComponentModel;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Controls
 {

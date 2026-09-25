@@ -7,7 +7,7 @@ namespace ObjectOrientedPractics.Model.Enums
     /// <summary>
     /// Категории товаров
     /// </summary>
-    enum ProductCategory
+    public enum ProductCategory
     {
         Default = 0,
         Electronics = 1,

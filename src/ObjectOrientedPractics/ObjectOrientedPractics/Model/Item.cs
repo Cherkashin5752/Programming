@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит Id, именование, информацию и стоимость товара
     /// </summary>
-    internal class Item
+    public class Item
     {
         /// <summary>
         /// Счётчик для генерации уникальных Id

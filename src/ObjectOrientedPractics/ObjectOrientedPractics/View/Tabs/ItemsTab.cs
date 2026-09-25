@@ -12,12 +12,32 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Пользовательский элемент, который осуществляет логику работы с товарами
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
         /// <summary>
         /// Список товаров, привязанный к графическому интерфейсу.
         /// </summary>
         private BindingList<Model.Item> _items = new();
+
+        /// <summary>
+        /// Возвращает и задаёт список товаров
+        /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public BindingList<Model.Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+                RefreshItemsListBox();
+            }
+        }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="ItemsTab"/>.
@@ -27,33 +47,16 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
 
-            ItemsListBox.DataSource = _items;
+            ItemsListBox.DataSource = Items;
             ItemsListBox.DisplayMember = "Name";
 
             CategoryComboBox.Items.AddRange(Enum.GetNames<ProductCategory>());
 
-            string exeFilePath = PathService.GetProjectRootDir();
-
             try
             {
-                ItemFactory.SetUpItemFactory(exeFilePath);
-
-                string jsonPath = PathService.GetProjectRootDir() + "\\Items Objects.json";
-
-                BindingList<Model.Item> tempItems = ProjectSerializer.DeserializeJsonItemsFile(jsonPath);
-
-                if (tempItems == null)
-                {
-                    return;
-                }
-
-                foreach (Model.Item item in tempItems)
-                {
-                    _items.Add(item);
-                }
+                ItemFactory.SetUpItemFactory();
             }
             catch { }
-
         }
 
         /// <summary>
@@ -64,7 +67,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddDefaultItemButton_Click(object sender, EventArgs e)
         {
             Model.Item newItem = new Model.Item();
-            _items.Add(newItem);
+            Items.Add(newItem);
         }
 
         /// <summary>
@@ -75,7 +78,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddRandomItemButton_Click(object sender, EventArgs e)
         {
             Model.Item newItem = ItemFactory.GenerateItem();
-            _items.Add(newItem);
+            Items.Add(newItem);
         }
 
         /// <summary>
@@ -89,7 +92,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 int selectedIndex = ItemsListBox.SelectedIndex;
 
-                _items.RemoveAt(selectedIndex);
+                Items.RemoveAt(selectedIndex);
 
                 ItemsListBox.SelectedIndex = -1;
 
@@ -109,7 +112,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 try
                 {
-                    _items[ItemsListBox.SelectedIndex].Cost = double.Parse(CostTextBox.Text);
+                    Items[ItemsListBox.SelectedIndex].Cost = double.Parse(CostTextBox.Text);
                     CostTextBox.BackColor = Color.White;
                 }
                 catch { CostTextBox.BackColor = Color.LightPink; }
@@ -128,7 +131,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 try
                 {
-                    _items[ItemsListBox.SelectedIndex].Name = NameTextBox.Text;
+                    Items[ItemsListBox.SelectedIndex].Name = NameTextBox.Text;
                     NameTextBox.BackColor = Color.White;
                 }
                 catch { NameTextBox.BackColor = Color.LightPink; }
@@ -143,9 +146,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Аргумент события.</param>
         private void NameTextBox_Leave(object sender, EventArgs e)
         {
-            ItemsListBox.DataSource = null;
-            ItemsListBox.DataSource = _items;
-            ItemsListBox.DisplayMember = "Name";
+            RefreshItemsListBox();
         }
 
         /// <summary>
@@ -215,12 +216,13 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Выполняет сериализацию текущего списка покупателей в файл формата JSON.
-        /// Вызывается в главной форме.
+        /// Обновляет отображение ItemsListBox
         /// </summary>
-        public void SerializeItems()
+        private void RefreshItemsListBox()
         {
-            ProjectSerializer.SerializeJsonItemsFile(_items, PathService.GetProjectRootDir() + "\\Items Objects.json");
+            ItemsListBox.DataSource = null;
+            ItemsListBox.DataSource = Items;
+            ItemsListBox.DisplayMember = "Name";
         }
     }
 }
