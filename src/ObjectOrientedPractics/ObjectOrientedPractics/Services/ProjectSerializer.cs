@@ -12,10 +12,10 @@ namespace ObjectOrientedPractics.Services
     internal class ProjectSerializer
     {
         /// <summary>
-        /// Выполняет десериализацию списка покупателей из файла формат JSON.
+        /// Выполняет десериализацию списка магазина из файла формат JSON.
         /// </summary>
-        /// <param name="path">Путь к файлу, содержащему данные о покупателях.</param>
-        /// <returns>Список товаров  в виде объекта <see cref="BindingList{T}"/>, содержащего экземпляры <see cref="Model.Customer"/></returns>
+        /// <param name="path">Путь к файлу, содержащему данные о магазине.</param>
+        /// <returns>экземпляр магазина в виде объекта <see cref="Store"/></returns>
         static public Store DeserializeJsonStoreFile(string path)
         {
             string StoreJsonText = File.ReadAllText(PathService.GetProjectRootDir() + path);
@@ -26,9 +26,9 @@ namespace ObjectOrientedPractics.Services
         }
 
         /// <summary>
-        /// Сериализует список покупателей в формат JSON и сохраняет его в указанный файл.
+        /// Сериализует экземпляр магазина в формат JSON и сохраняет его в указанный файл.
         /// </summary>
-        /// <param name="customers">Список покупателей <see cref="BindingList{T}"/> для сохранения.</param>
+        /// <param name="customers">Экземпляр покупателя <see cref="Store"/> для сохранения.</param>
         /// <param name="path">Путь к файлу, в который будут записаны данные.</param>
         static public void SerializeJsonStoreFile(Model.Store store, string path)
         {

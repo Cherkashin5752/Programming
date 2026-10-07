@@ -13,22 +13,22 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Список товаров
         /// </summary>
-        private BindingList<Model.Item> _items;
+        private BindingList<Item> _items;
         
         /// <summary>
         /// Список покупателей
         /// </summary>
-        private BindingList<Model.Customer> _customers;
+        private BindingList<Customer> _customers;
 
         /// <summary>
         /// Возвращает и задаёт список товаров
         /// </summary>
-        public BindingList<Model.Item> Items { get { return _items; } set { _items = value; } }
+        public BindingList<Item> Items { get { return _items; } set { _items = value; } }
         
         /// <summary>
         /// Возвращает и задаёт список покупателей
         /// </summary>
-        public BindingList<Model.Customer> Customers { get { return _customers; } set { _customers = value; } }
+        public BindingList<Customer> Customers { get { return _customers; } set { _customers = value; } }
 
         /// <summary>
         /// Инициализирует новый экземплар класса <see cref="Store">

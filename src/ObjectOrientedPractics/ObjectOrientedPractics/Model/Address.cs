@@ -18,7 +18,7 @@ namespace ObjectOrientedPractics.Model
         private int _index;
  
         /// <summary>
-        /// Страна/регион покупателя
+        /// Страна (регион) покупателя
         /// </summary>
         private string _country;
 

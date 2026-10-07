@@ -36,7 +36,7 @@ namespace ObjectOrientedPractics.Services
 
             int newCost = random.Next(0, 100000);
 
-            ProductCategory newCategory = (ProductCategory)random.Next(1, 8);
+            ProductCategory newCategory = (ProductCategory)random.Next(1, Enum.GetNames<ProductCategory>().Length);
 
             Model.Item newItem = new Model.Item(newName, newInfo, newCost, newCategory);
 
@@ -48,7 +48,7 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         static public void SetUpItemFactory()
         {
-            StreamReader reader = new StreamReader(PathService.GetProjectRootDir() + "\\Items Names.json");
+            StreamReader reader = new StreamReader(PathService.GetProjectRootDir() + "\\Preload Data\\Items Names.json");
 
             if (reader != null)
             {
@@ -57,7 +57,7 @@ namespace ObjectOrientedPractics.Services
 
             reader.Close();
 
-            reader = new StreamReader(PathService.GetProjectRootDir() + "\\Items Info.json");
+            reader = new StreamReader(PathService.GetProjectRootDir() + "\\Preload Data\\Items Info.json");
 
             if (reader != null)
             {

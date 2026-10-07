@@ -74,7 +74,7 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         static public void SetUpCustomerFactory()
         {
-            StreamReader reader = new StreamReader(PathService.GetProjectRootDir() + "\\Customers Fullnames.json");
+            StreamReader reader = new StreamReader(PathService.GetProjectRootDir() + "\\Preload Data\\Customers Fullnames.json");
 
             if (reader != null)
             {
@@ -83,7 +83,7 @@ namespace ObjectOrientedPractics.Services
             
             reader.Close();
 
-            reader = new StreamReader(PathService.GetProjectRootDir() + "\\Customers Addresses.json");
+            reader = new StreamReader(PathService.GetProjectRootDir() + "\\Preload Data\\Customers Addresses.json");
 
             if (reader != null)
             {

@@ -7,7 +7,7 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
-        private Model.Store _store = new Model.Store();
+        private Store _store = new Store();
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="MainForm"/>.
@@ -18,7 +18,7 @@ namespace ObjectOrientedPractics
 
             try
             {
-                string jsonPath = "\\Object Store.json";
+                string jsonPath = "\\Saved Data\\Store Object.json";
 
                 Store tempStore = ProjectSerializer.DeserializeJsonStoreFile(jsonPath);
 
