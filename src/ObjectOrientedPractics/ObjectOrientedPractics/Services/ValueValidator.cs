@@ -56,7 +56,7 @@ namespace ObjectOrientedPractics.Services
         /// <exception cref="ArgumentException">Ошибка, если число не назодится в диапазоне</exception>
         static public bool ValueInRange(int value, int min, int max, string propetryName)
         {
-            if (value > min && value < max)
+            if (value >= min && value <= max)
             {
                 return true;
             }
