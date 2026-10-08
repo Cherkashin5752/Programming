@@ -136,12 +136,12 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Address()
         {
-            this.Index = 100_000;
-            this.Country = "Default country";
-            this.City = "Default";
-            this.Street = "Default street";
-            this.Building = "Default";
-            this.Apartment = "Default";
+            Index = 100_000;
+            Country = "Default country";
+            City = "Default";
+            Street = "Default street";
+            Building = "Default";
+            Apartment = "Default";
         }
 
         /// <summary>
@@ -156,12 +156,26 @@ namespace ObjectOrientedPractics.Model
         public Address(int index, string country, string city,
             string street, string building, string apartment)
         {
-            this.Index = index;
-            this.Country = country;
-            this.City = city;
-            this.Street = street;
-            this.Building = building;
-            this.Apartment = apartment;
+            Index = index;
+            Country = country;
+            City = city;
+            Street = street;
+            Building = building;
+            Apartment = apartment;
+        }
+
+        /// <summary>
+        /// Конструктор копирования. Создаёт новый экземпляр класса <see cref="Address">
+        /// </summary>
+        /// <param name="address">Копируемый адрес</param>
+        public Address (Address address)
+        {
+            Index = address.Index;
+            Country = address.Country;
+            City = address.City;
+            Street = address.Street;
+            Building = address.Building;
+            Apartment = address.Apartment;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.ComponentModel;
+using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Controls
@@ -18,7 +19,7 @@ namespace ObjectOrientedPractics.View.Controls
         /// <summary>
         /// Сдрес текуще-выбранного покупателя
         /// </summary>
-        private Model.Address _currentAddress;
+        private Address _currentAddress;
 
         /// <summary>
         /// Событие. Возникает при изменении любого поля класса
@@ -29,7 +30,7 @@ namespace ObjectOrientedPractics.View.Controls
         /// Возвращает и задаёт значение текуще-выбранного покупателя
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public Model.Address CurrentAddress
+        public Address CurrentAddress
         {
             get
             {

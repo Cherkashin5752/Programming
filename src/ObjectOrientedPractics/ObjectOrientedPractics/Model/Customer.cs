@@ -66,12 +66,11 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullname">Полное имя покупателя</param>
         /// <param name="address">Адрес покупателя</param>
-        public Customer(string fullname, int index, string country, string city,
-            string street, string building, string apartment)
+        public Customer(string fullname, Address address)
         {
             this.ID = _idCounter++;
             this.Fullname = fullname;
-            this.Address = new Address(index, country, city, street, building, apartment);
+            this.Address = new Address(address);
         }
     }
 }

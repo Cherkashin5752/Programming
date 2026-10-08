@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ObjectOrientedPractics.Model;
+using System.Net.Http.Headers;
 
 namespace ObjectOrientedPractics.Services
 {
@@ -41,30 +42,18 @@ namespace ObjectOrientedPractics.Services
                 newFullname = "Default fullname";
             }
 
-            int newIndex;
-            string newCountry, newCity, newStreet, newBuilding, newApartment;
+            Address newAddress;
 
             if (_addresses.Count != 0)
             {
-                newIndex = _addresses[randomCustomer].Index;
-                newCountry = _addresses[randomCustomer].Country;
-                newCity = _addresses[randomCustomer].City;
-                newStreet = _addresses[randomCustomer].Street;
-                newBuilding = _addresses[randomCustomer].Building;
-                newApartment = _addresses[randomCustomer].Apartment;
+                newAddress = new Address(_addresses[maxCustomersCount]);
             }
             else
             {
-                newIndex = 100000;
-                newCountry = "Default country";
-                newCity = "Default";
-                newStreet = "Default street";
-                newBuilding = "Default";
-                newApartment = "Default";
+                newAddress = new Address();
             }
 
-            Model.Customer newCustomer = new Model.Customer(newFullname, newIndex, newCountry,
-            newCity, newStreet, newBuilding, newApartment);
+            Model.Customer newCustomer = new Customer(newFullname, newAddress);
 
             return newCustomer;
         }
